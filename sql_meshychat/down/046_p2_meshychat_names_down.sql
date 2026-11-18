@@ -1,0 +1,220 @@
+-- DOWN for P2 object names. When meshy_app still exists beside meshychat_app,
+-- meshychat_app is the separate role provisioned by the up migration, so rollback
+-- removes its database privileges to restore the pre-046 catalog. When meshy_app is
+-- absent after the production role rename, meshychat_app is the application role and
+-- this guarded cleanup does nothing. The role and its membership are never removed.
+-- `sqlmigrate.py --rollback-to meshychat:45` runs this script as the inverse of
+-- sql_meshychat/046_p2_meshychat_names.sql.
+BEGIN;
+
+-- The same fixed key as the up migration serializes cluster-role work across databases.
+SELECT pg_advisory_xact_lock(629245845241957046);
+
+DO $p2_roles_down$
+DECLARE
+    rec record;
+    object_kind text;
+BEGIN
+    IF to_regrole('meshy_app') IS NOT NULL
+       AND to_regrole('meshychat_app') IS NOT NULL
+       AND to_regrole('meshy_app') <> to_regrole('meshychat_app') THEN
+        -- The up migration emptied meshy_app's ACL after copying it to meshychat_app, so
+        -- hand every privilege back first; the revokes below then restore the pre-046 state.
+        -- This copies meshychat_app's CURRENT ACL, so it is an exact inverse only when nothing
+        -- was granted to or revoked from meshychat_app between the up and this down.
+        FOR rec IN
+            SELECT 'SCHEMA public' AS target, a.privilege_type, a.is_grantable
+              FROM pg_namespace n
+              CROSS JOIN LATERAL aclexplode(n.nspacl) a
+             WHERE n.nspname = 'public' AND a.grantee = to_regrole('meshychat_app')
+            UNION ALL
+            SELECT CASE WHEN c.relkind = 'S' THEN 'SEQUENCE ' ELSE 'TABLE ' END ||
+                       quote_ident(n.nspname) || '.' || quote_ident(c.relname),
+                   a.privilege_type, a.is_grantable
+              FROM pg_class c
+              JOIN pg_namespace n ON n.oid = c.relnamespace
+              CROSS JOIN LATERAL aclexplode(c.relacl) a
+             WHERE n.nspname = 'public' AND c.relkind IN ('r', 'p', 'v', 'm', 'S', 'f')
+               AND a.grantee = to_regrole('meshychat_app')
+            UNION ALL
+            SELECT 'FUNCTION ' || quote_ident(n.nspname) || '.' || quote_ident(p.proname) ||
+                       '(' || pg_get_function_identity_arguments(p.oid) || ')',
+                   a.privilege_type, a.is_grantable
+              FROM pg_proc p
+              JOIN pg_namespace n ON n.oid = p.pronamespace
+              CROSS JOIN LATERAL aclexplode(p.proacl) a
+             WHERE n.nspname = 'public' AND a.grantee = to_regrole('meshychat_app')
+        LOOP
+            EXECUTE 'GRANT ' || rec.privilege_type || ' ON ' || rec.target || ' TO meshy_app' ||
+                    CASE WHEN rec.is_grantable THEN ' WITH GRANT OPTION' ELSE '' END;
+        END LOOP;
+        FOR rec IN
+            SELECT d.defaclrole, d.defaclobjtype, a.privilege_type, a.is_grantable
+              FROM pg_default_acl d
+              JOIN pg_namespace n ON n.oid = d.defaclnamespace
+              CROSS JOIN LATERAL aclexplode(d.defaclacl) a
+             WHERE n.nspname = 'public' AND d.defaclobjtype IN ('r', 'S', 'f')
+               AND a.grantee = to_regrole('meshychat_app')
+        LOOP
+            EXECUTE 'ALTER DEFAULT PRIVILEGES FOR ROLE ' ||
+                    quote_ident((SELECT rolname FROM pg_roles WHERE oid = rec.defaclrole)) ||
+                    ' IN SCHEMA public GRANT ' || rec.privilege_type || ' ON ' ||
+                    CASE rec.defaclobjtype WHEN 'r' THEN 'TABLES' WHEN 'S' THEN 'SEQUENCES' ELSE 'FUNCTIONS' END ||
+                    ' TO meshy_app' || CASE WHEN rec.is_grantable THEN ' WITH GRANT OPTION' ELSE '' END;
+        END LOOP;
+
+        REVOKE ALL PRIVILEGES ON SCHEMA public FROM meshychat_app;
+        REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM meshychat_app;
+        REVOKE ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public FROM meshychat_app;
+        REVOKE ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public FROM meshychat_app;
+
+        FOR rec IN
+            SELECT DISTINCT d.defaclrole, d.defaclobjtype
+              FROM pg_default_acl d
+              JOIN pg_namespace n ON n.oid = d.defaclnamespace
+             WHERE n.nspname = 'public'
+               AND d.defaclobjtype IN ('r', 'S', 'f')
+        LOOP
+            object_kind := CASE rec.defaclobjtype
+                               WHEN 'r' THEN 'TABLES'
+                               WHEN 'S' THEN 'SEQUENCES'
+                               WHEN 'f' THEN 'FUNCTIONS'
+                           END;
+            EXECUTE 'ALTER DEFAULT PRIVILEGES FOR ROLE ' ||
+                    quote_ident((SELECT rolname FROM pg_roles WHERE oid = rec.defaclrole)) ||
+                    ' IN SCHEMA public REVOKE ALL ON ' || object_kind ||
+                    ' FROM meshychat_app';
+        END LOOP;
+    END IF;
+END
+$p2_roles_down$;
+
+-- P2 objects: rename every database object named meshy_* to meshychat_* (down).
+-- Generated by gen_p2.py from a database migrated to main ee49985 (both sets, sql_meshychat 034).
+-- Runs inside p2_up.sql or p2_down.sql, never alone. Every statement names its source exactly,
+-- so a missing source or an existing target aborts the whole transaction and changes nothing.
+-- Data VALUES are not touched (skill_call_events.source keeps 'meshy'; see README). Comments
+-- are prose and wait for P4.
+
+-- 1. tables (row types follow)
+ALTER TABLE public.meshychat_guard_approvals RENAME TO meshy_guard_approvals;
+ALTER TABLE public.meshychat_guard_flow_decisions RENAME TO meshy_guard_flow_decisions;
+ALTER TABLE public.meshychat_guard_policies RENAME TO meshy_guard_policies;
+ALTER TABLE public.meshychat_guard_policy_attachments RENAME TO meshy_guard_policy_attachments;
+ALTER TABLE public.meshychat_guard_policy_decisions RENAME TO meshy_guard_policy_decisions;
+ALTER TABLE public.meshychat_guard_reasoning_traces RENAME TO meshy_guard_reasoning_traces;
+ALTER TABLE public.meshychat_guard_scan_results RENAME TO meshy_guard_scan_results;
+ALTER TABLE public.meshychat_memory RENAME TO meshy_memory;
+-- 2. sequences
+ALTER SEQUENCE public.meshychat_guard_flow_decisions_id_seq RENAME TO meshy_guard_flow_decisions_id_seq;
+ALTER SEQUENCE public.meshychat_guard_policy_decisions_decision_id_seq RENAME TO meshy_guard_policy_decisions_decision_id_seq;
+ALTER SEQUENCE public.meshychat_guard_reasoning_traces_id_seq RENAME TO meshy_guard_reasoning_traces_id_seq;
+ALTER SEQUENCE public.meshychat_guard_scan_results_id_seq RENAME TO meshy_guard_scan_results_id_seq;
+-- 3. columns
+ALTER TABLE public.meshy_memory RENAME COLUMN meshychat_guard_artifact_hash TO meshy_guard_artifact_hash;
+ALTER TABLE public.meshy_memory RENAME COLUMN meshychat_guard_review TO meshy_guard_review;
+ALTER TABLE public.meshy_memory RENAME COLUMN meshychat_guard_reviewed_at TO meshy_guard_reviewed_at;
+ALTER TABLE public.meshy_memory RENAME COLUMN meshychat_guard_status TO meshy_guard_status;
+ALTER TABLE public.skills RENAME COLUMN meshychat_guard_artifact_hash TO meshy_guard_artifact_hash;
+ALTER TABLE public.skills RENAME COLUMN meshychat_guard_review TO meshy_guard_review;
+ALTER TABLE public.skills RENAME COLUMN meshychat_guard_reviewed_at TO meshy_guard_reviewed_at;
+ALTER TABLE public.skills RENAME COLUMN meshychat_guard_status TO meshy_guard_status;
+-- 4. constraints (a primary key or unique constraint renames its index too)
+ALTER TABLE public.meshy_guard_approvals RENAME CONSTRAINT meshychat_guard_approvals_expiry_after_create TO meshy_guard_approvals_expiry_after_create;
+ALTER TABLE public.meshy_guard_approvals RENAME CONSTRAINT meshychat_guard_approvals_id_format TO meshy_guard_approvals_id_format;
+ALTER TABLE public.meshy_guard_approvals RENAME CONSTRAINT meshychat_guard_approvals_phase_check TO meshy_guard_approvals_phase_check;
+ALTER TABLE public.meshy_guard_approvals RENAME CONSTRAINT meshychat_guard_approvals_pkey TO meshy_guard_approvals_pkey;
+ALTER TABLE public.meshy_guard_approvals RENAME CONSTRAINT meshychat_guard_approvals_preview_len TO meshy_guard_approvals_preview_len;
+ALTER TABLE public.meshy_guard_approvals RENAME CONSTRAINT meshychat_guard_approvals_resolution_shape TO meshy_guard_approvals_resolution_shape;
+ALTER TABLE public.meshy_guard_approvals RENAME CONSTRAINT meshychat_guard_approvals_sandbox_status_check TO meshy_guard_approvals_sandbox_status_check;
+ALTER TABLE public.meshy_guard_approvals RENAME CONSTRAINT meshychat_guard_approvals_status_check TO meshy_guard_approvals_status_check;
+ALTER TABLE public.meshy_guard_approvals RENAME CONSTRAINT meshychat_guard_approvals_status_verdict TO meshy_guard_approvals_status_verdict;
+ALTER TABLE public.meshy_guard_approvals RENAME CONSTRAINT meshychat_guard_approvals_verdict_check TO meshy_guard_approvals_verdict_check;
+ALTER TABLE public.meshy_guard_flow_decisions RENAME CONSTRAINT meshychat_guard_flow_decisions_args_sha256_fmt TO meshy_guard_flow_decisions_args_sha256_fmt;
+ALTER TABLE public.meshy_guard_flow_decisions RENAME CONSTRAINT meshychat_guard_flow_decisions_decision_check TO meshy_guard_flow_decisions_decision_check;
+ALTER TABLE public.meshy_guard_flow_decisions RENAME CONSTRAINT meshychat_guard_flow_decisions_mode_check TO meshy_guard_flow_decisions_mode_check;
+ALTER TABLE public.meshy_guard_flow_decisions RENAME CONSTRAINT meshychat_guard_flow_decisions_pkey TO meshy_guard_flow_decisions_pkey;
+ALTER TABLE public.meshy_guard_policies RENAME CONSTRAINT meshychat_guard_policies_id_shape TO meshy_guard_policies_id_shape;
+ALTER TABLE public.meshy_guard_policies RENAME CONSTRAINT meshychat_guard_policies_kind_check TO meshy_guard_policies_kind_check;
+ALTER TABLE public.meshy_guard_policies RENAME CONSTRAINT meshychat_guard_policies_name_key TO meshy_guard_policies_name_key;
+ALTER TABLE public.meshy_guard_policies RENAME CONSTRAINT meshychat_guard_policies_pkey TO meshy_guard_policies_pkey;
+ALTER TABLE public.meshy_guard_policy_attachments RENAME CONSTRAINT meshychat_guard_policy_attachments_pkey TO meshy_guard_policy_attachments_pkey;
+ALTER TABLE public.meshy_guard_policy_attachments RENAME CONSTRAINT meshychat_guard_policy_attachments_policy_id_fkey TO meshy_guard_policy_attachments_policy_id_fkey;
+ALTER TABLE public.meshy_guard_policy_decisions RENAME CONSTRAINT meshychat_guard_policy_decisions_pkey TO meshy_guard_policy_decisions_pkey;
+ALTER TABLE public.meshy_guard_reasoning_traces RENAME CONSTRAINT meshychat_guard_reasoning_traces_pkey TO meshy_guard_reasoning_traces_pkey;
+ALTER TABLE public.meshy_guard_scan_results RENAME CONSTRAINT meshychat_guard_scan_results_conclusion_check TO meshy_guard_scan_results_conclusion_check;
+ALTER TABLE public.meshy_guard_scan_results RENAME CONSTRAINT meshychat_guard_scan_results_pkey TO meshy_guard_scan_results_pkey;
+ALTER TABLE public.meshy_guard_scan_results RENAME CONSTRAINT meshychat_guard_scan_results_review_status_check TO meshy_guard_scan_results_review_status_check;
+ALTER TABLE public.meshy_memory RENAME CONSTRAINT meshychat_memory_created_by_owner_id_fkey TO meshy_memory_created_by_owner_id_fkey;
+ALTER TABLE public.meshy_memory RENAME CONSTRAINT meshychat_memory_created_by_peer_id_fkey TO meshy_memory_created_by_peer_id_fkey;
+ALTER TABLE public.meshy_memory RENAME CONSTRAINT meshychat_memory_pkey TO meshy_memory_pkey;
+ALTER TABLE public.meshy_memory RENAME CONSTRAINT meshychat_memory_meshychat_guard_status_check TO meshy_memory_meshy_guard_status_check;
+ALTER TABLE public.meshy_memory RENAME CONSTRAINT meshychat_memory_source_check TO meshy_memory_source_check;
+ALTER TABLE public.skills RENAME CONSTRAINT skills_meshychat_guard_status_check TO skills_meshy_guard_status_check;
+-- 5. indexes that back no constraint
+ALTER INDEX public.meshychat_guard_approvals_call_idx RENAME TO meshy_guard_approvals_call_idx;
+ALTER INDEX public.meshychat_guard_approvals_caller_idx RENAME TO meshy_guard_approvals_caller_idx;
+ALTER INDEX public.meshychat_guard_approvals_owner_pending_idx RENAME TO meshy_guard_approvals_owner_pending_idx;
+ALTER INDEX public.meshychat_guard_approvals_pending_expiry_idx RENAME TO meshy_guard_approvals_pending_expiry_idx;
+ALTER INDEX public.meshychat_guard_flow_decisions_call_idx RENAME TO meshy_guard_flow_decisions_call_idx;
+ALTER INDEX public.meshychat_guard_flow_decisions_caller_time_idx RENAME TO meshy_guard_flow_decisions_caller_time_idx;
+ALTER INDEX public.meshychat_guard_flow_decisions_reason_time_idx RENAME TO meshy_guard_flow_decisions_reason_time_idx;
+ALTER INDEX public.meshychat_guard_flow_decisions_target_time_idx RENAME TO meshy_guard_flow_decisions_target_time_idx;
+ALTER INDEX public.meshychat_guard_reasoning_traces_chain_uniq RENAME TO meshy_guard_reasoning_traces_chain_uniq;
+ALTER INDEX public.meshychat_guard_scan_results_chain_idx RENAME TO meshy_guard_scan_results_chain_idx;
+ALTER INDEX public.meshychat_guard_scan_results_chain_wm_uniq RENAME TO meshy_guard_scan_results_chain_wm_uniq;
+ALTER INDEX public.meshychat_guard_scan_results_pending_idx RENAME TO meshy_guard_scan_results_pending_idx;
+ALTER INDEX public.meshychat_memory_owner_idx RENAME TO meshy_memory_owner_idx;
+ALTER INDEX public.meshychat_memory_meshychat_guard_status_idx RENAME TO meshy_memory_meshy_guard_status_idx;
+ALTER INDEX public.skills_meshychat_guard_status_idx RENAME TO skills_meshy_guard_status_idx;
+-- 5b. index column names: an index keeps the column names it was built with, so a
+--     column rename (or a function rename, for an expression index) does not reach them
+ALTER TABLE public.idx_shared_memory_value_trgm RENAME COLUMN meshychat_jsonb_values_text TO meshy_jsonb_values_text;
+ALTER TABLE public.meshy_memory_meshy_guard_status_idx RENAME COLUMN meshychat_guard_status TO meshy_guard_status;
+ALTER TABLE public.skills_meshy_guard_status_idx RENAME COLUMN meshychat_guard_status TO meshy_guard_status;
+-- 6. row-level security policies
+ALTER POLICY meshychat_memory_internal_delete ON public.meshy_memory RENAME TO meshy_memory_internal_delete;
+ALTER POLICY meshychat_memory_internal_insert ON public.meshy_memory RENAME TO meshy_memory_internal_insert;
+ALTER POLICY meshychat_memory_internal_update ON public.meshy_memory RENAME TO meshy_memory_internal_update;
+ALTER POLICY meshychat_memory_tenant_select ON public.meshy_memory RENAME TO meshy_memory_tenant_select;
+-- 7. triggers
+ALTER TRIGGER meshychat_memory_set_updated_at ON public.meshy_memory RENAME TO meshy_memory_set_updated_at;
+-- 8. functions (policies and the trigram index bind by OID and follow)
+ALTER FUNCTION public.meshychat_jsonb_values_text(doc jsonb) RENAME TO meshy_jsonb_values_text;
+ALTER FUNCTION public.meshychat_namespace_permission(namespace text, peer uuid) RENAME TO meshy_namespace_permission;
+ALTER FUNCTION public.meshychat_namespace_permission(peer uuid) RENAME TO meshy_namespace_permission;
+ALTER FUNCTION public.meshychat_same_tenant_or_devgroup(caller uuid, target uuid) RENAME TO meshy_same_tenant_or_devgroup;
+-- 9. function BODIES that name a renamed identifier. A body is text, so a rename
+--    alone leaves it calling the old name; shared_memory_signed_bytes_agree compares
+--    current_user to a role name, and without this its E_SIGNED_BYTES_REQUIRED check
+--    would stop firing silently after the role rename.
+DO $p2$
+DECLARE
+    d text;
+    n int;
+BEGIN
+    d := pg_get_functiondef('public.meshy_namespace_permission(uuid)'::regprocedure);
+    n := (length(d) - length(replace(d, 'meshychat_namespace_permission.peer', ''))) / length('meshychat_namespace_permission.peer');
+    IF n <> 3 THEN RAISE EXCEPTION 'P2: meshy_namespace_permission: expected 3 of [%], found %', 'meshychat_namespace_permission.peer', n; END IF;
+    d := replace(d, 'meshychat_namespace_permission.peer', 'meshy_namespace_permission.peer');
+    EXECUTE d;
+    d := pg_get_functiondef('public.meshy_namespace_permission(text, uuid)'::regprocedure);
+    n := (length(d) - length(replace(d, 'meshychat_namespace_permission.namespace', ''))) / length('meshychat_namespace_permission.namespace');
+    IF n <> 2 THEN RAISE EXCEPTION 'P2: meshy_namespace_permission: expected 2 of [%], found %', 'meshychat_namespace_permission.namespace', n; END IF;
+    d := replace(d, 'meshychat_namespace_permission.namespace', 'meshy_namespace_permission.namespace');
+    n := (length(d) - length(replace(d, 'FROM meshychat_namespace_permission(meshychat_namespace_permission.peer)', ''))) / length('FROM meshychat_namespace_permission(meshychat_namespace_permission.peer)');
+    IF n <> 1 THEN RAISE EXCEPTION 'P2: meshy_namespace_permission: expected 1 of [%], found %', 'FROM meshychat_namespace_permission(meshychat_namespace_permission.peer)', n; END IF;
+    d := replace(d, 'FROM meshychat_namespace_permission(meshychat_namespace_permission.peer)', 'FROM meshy_namespace_permission(meshy_namespace_permission.peer)');
+    EXECUTE d;
+    d := pg_get_functiondef('public.shared_memory_signed_bytes_agree()'::regprocedure);
+    n := (length(d) - length(replace(d, 'IF current_user = ''meshychat_app''', ''))) / length('IF current_user = ''meshychat_app''');
+    IF n <> 1 THEN RAISE EXCEPTION 'P2: shared_memory_signed_bytes_agree: expected 1 of [%], found %', 'IF current_user = ''meshychat_app''', n; END IF;
+    d := replace(d, 'IF current_user = ''meshychat_app''', 'IF current_user = ''meshy_app''');
+    n := (length(d) - length(replace(d, '''E_SIGNED_BYTES_REQUIRED: meshychat_app must store', ''))) / length('''E_SIGNED_BYTES_REQUIRED: meshychat_app must store');
+    IF n <> 1 THEN RAISE EXCEPTION 'P2: shared_memory_signed_bytes_agree: expected 1 of [%], found %', '''E_SIGNED_BYTES_REQUIRED: meshychat_app must store', n; END IF;
+    d := replace(d, '''E_SIGNED_BYTES_REQUIRED: meshychat_app must store', '''E_SIGNED_BYTES_REQUIRED: meshy_app must store');
+    EXECUTE d;
+END
+$p2$;
+
+COMMIT;

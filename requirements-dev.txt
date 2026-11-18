@@ -1,0 +1,43 @@
+# Test and development dependencies. Install both files:
+#
+#   python3.13 -m venv .venv      # CPython 3.13, pinned in pyproject.toml (divergence 040)
+#   .venv/bin/pip install -r requirements.txt -r requirements-dev.txt
+#
+# Then build the database. Note it is ONE command and it applies EVERY migration set;
+# before 2026-09-21 the documented command applied `sql/` only and left the write side
+# of row-level security open. See apps/core/schema_sets.py.
+#
+#   python apps/core/sqlmigrate.py --dsn postgresql://USER:PW@HOST:5434/meshy_django
+#   python -m pytest tests/ -q
+#
+# Verify the database is complete without applying anything:
+#
+#   python apps/core/sqlmigrate.py --dsn ... --check
+
+-r requirements.txt
+
+pytest>=8.0            # proven on 8.0 through 9.1.1
+pytest-asyncio>=0.23   # proven on 1.4.0; the websocket consumer tests are async
+pytest-django>=4.9     # proven on 4.14.0; tests/test_meshguard.py uses its `client` fixture
+websockets>=13.0       # proven on 17.1; `listen` in tools/meshy_node, the reference node
+                       # client (imported only by that subcommand)
+psutil>=5.9            # proven on 7.2.2; the POSIX postbox reads its daemon's liveness from the
+                       # process table (tools/postbox/postbox_os.daemon_running). Without it the
+                       # three tests in tests/test_postbox_wait_next_once.py fail on macOS and
+                       # Linux; Windows takes the lock probe instead (pxx, 2026-10-10).
+uvicorn>=0.30          # proven on 0.53.0; tests/test_fresh_install_runbook.py serves the
+                       # ASGI app on a real socket in a thread of the test process, so the
+                       # reference client's HTTP and WebSocket traffic is real (daphne's
+                       # Twisted reactor cannot be restarted in-process). Not a runtime dep.
+
+# WHY pytest-django IS HERE, added 2026-09-21 after it was found missing.
+# Without it, tests/test_meshguard.py errors with "fixture 'client' not found" and one
+# test never runs. It was undeclared because this file was written before that test
+# existed, and an undeclared dependency is invisible to whoever already has it installed
+# and fatal to whoever does not. Measured both ways on the same commit: without it,
+# 675 passed and 4 errors; with it, 676 passed and 3 errors.
+#
+# It was ALSO suspected of causing a 105-failure run in another checkout, on the theory
+# that pytest-django manages its own test database while these tests seed through raw
+# psycopg. That was PREDICTED AND THEN REFUTED here: installing it changed nothing except
+# fixing the error above. Recorded so the next person does not re-run the same experiment.

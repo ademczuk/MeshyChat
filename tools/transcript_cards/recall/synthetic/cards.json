@@ -1,0 +1,88 @@
+{
+ "about": "Synthetic decision cards for tests/test_recall_cards_search.py. Every word is invented. `name` is local to this file; `supersedes` names other entries and becomes their card keys when written. Seats are roster labels; nothing here was said by anyone.",
+ "cards": [
+  {
+   "name": "harbor-pause",
+   "type": "Ruling",
+   "seat": "pxx",
+   "time": "2026-10-08T07:32:13.000Z",
+   "text": "Ruling | pause the harbor release until the beacon patch lands"
+  },
+  {
+   "name": "harbor-ship",
+   "type": "Ruling",
+   "seat": "kxxx",
+   "time": "2026-10-08T07:37:17.000Z",
+   "text": "Ruling | ship the harbor release today with the beacon patch",
+   "supersedes": [
+    "harbor-pause"
+   ]
+  },
+  {
+   "name": "lamp-weekly",
+   "type": "Ruling",
+   "seat": "txxxx",
+   "time": "2026-10-07T10:00:00.000Z",
+   "text": "Ruling | rebuild the lamp index weekly"
+  },
+  {
+   "name": "lamp-nightly",
+   "type": "Ruling",
+   "seat": "txxxx",
+   "time": "2026-10-08T10:00:00.000Z",
+   "text": "Ruling | rebuild the lamp index nightly",
+   "supersedes": [
+    "lamp-weekly"
+   ]
+  },
+  {
+   "name": "lamp-maybe",
+   "type": "Candidate",
+   "seat": "txxxx",
+   "time": "2026-10-08T11:00:00.000Z",
+   "text": "Candidate | could the lamp index rebuild run hourly"
+  },
+  {
+   "name": "fence",
+   "type": "Ruling",
+   "seat": "exxxx-session",
+   "time": "2026-10-06T09:15:00.000Z",
+   "text": "Ruling | paint the garden fence slate blue"
+  },
+  {
+   "name": "ladder",
+   "type": "Ruling",
+   "seat": "uxxx",
+   "time": "2026-10-05T14:00:00.000Z",
+   "text": "Ruling | store the orchard ladder in the north shed"
+  },
+  {
+   "name": "archive",
+   "type": "Ruling",
+   "seat": "memory-bxxxxx",
+   "time": "2026-10-09T16:20:00.000Z",
+   "text": "Ruling | keep the quarry archive whole, no pruning"
+  },
+  {
+   "name": "archive-question",
+   "type": "Question",
+   "seat": "memory-bxxxxx",
+   "time": "2026-10-09T16:19:00.000Z",
+   "text": "Question | prune the quarry archive or keep it whole?"
+  },
+  {
+   "name": "kettle",
+   "type": "Ruling",
+   "seat": "vxxxxxxxxxx",
+   "time": "2026-10-04T08:00:00.000Z",
+   "text": "Ruling | the copper kettle goes to the east kitchen"
+  },
+  {
+   "name": "kettle-claim",
+   "type": "Claim",
+   "seat": "vxxxxxxxxxx",
+   "time": "2026-10-04T09:00:00.000Z",
+   "text": "Claim | summary: the copper kettle goes to the east kitchen, decided by the operator"
+  }
+ ]
+}

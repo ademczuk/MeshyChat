@@ -1,0 +1,5 @@
+{
+  "name": "meshy",
+  "version": "0.1.0",
+  "description": "MeshyChat postbox channel: pushes this seat's MeshyChat mail into the session. The identity comes from MESHY_IDENTITY; without it the server does nothing."
+}

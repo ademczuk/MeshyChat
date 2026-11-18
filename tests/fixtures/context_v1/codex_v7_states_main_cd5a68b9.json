@@ -1,0 +1,138 @@
+{
+ "cuts": {
+  "1": {
+   "items": [],
+   "skipped": [],
+   "state": {
+    "adapter_version": "1.0",
+    "ag_hwm": null,
+    "batch": 1,
+    "batch_count": 0,
+    "batch_items": 256,
+    "denylist_sha256": "05205ffd32a9c8710642d24afd6389202c864e75cf59ae4ac0fd8c5ef65bad85",
+    "dialect": "codex",
+    "drop_machine_typed": true,
+    "final": null,
+    "finished": false,
+    "gen": 1,
+    "ordinal": 0,
+    "oversize": {},
+    "plan": [],
+    "quarantined": false,
+    "screens": true,
+    "seat": "fixture-seat",
+    "src": "b9004b89cd8f2f200f1c1d856ac69df4",
+    "subagent": false,
+    "v": 7
+   }
+  },
+  "10": {
+   "items": [
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"b9004b89cd8f2f200f1c1d856ac69df4\",\"gen\":1,\"batch\":1,\"ordinal\":0,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"codex\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-19T17:00:10.000Z\",\"native_ref\":\"bb82030dbc2bcaba32a90bf2e207a84a\",\"text\":\"Please summarise the plan for the scratch server.\",\"text_sha256\":\"831b3bd08509b9336e17e339cefdd4b48100f4f593e7296632af8a25195fd5c6\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"b9004b89cd8f2f200f1c1d856ac69df4\",\"gen\":1,\"batch\":1,\"ordinal\":1,\"item\":\"assistant_text\",\"role\":\"assistant\",\"dialect\":\"codex\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-19T17:00:20.000Z\",\"native_ref\":\"f55ff16f66f43360266b95db6f8fec01\",\"text\":\"The plan: rebase both branches, gate them, then redeploy the scratch server.\",\"text_sha256\":\"4062824d97f4d59bdc370d4ff48e42c246209c99f31c60d48bcf1c4a001f049a\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"b9004b89cd8f2f200f1c1d856ac69df4\",\"gen\":1,\"batch\":1,\"ordinal\":2,\"item\":\"task\",\"dialect\":\"codex\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-19T17:00:30.000Z\",\"native_ref\":\"f64551fcd6f07823cb87971cfb914464\",\"step\":\"Rebase\",\"event\":\"added\",\"text\":\"plan step added: Rebase\",\"text_sha256\":\"62d16b44a5e49e1a0de3bf9c9d697fb544e6097e15c2b8c67a80e8e7f986008b\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"b9004b89cd8f2f200f1c1d856ac69df4\",\"gen\":1,\"batch\":1,\"ordinal\":3,\"item\":\"task\",\"dialect\":\"codex\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-19T17:00:30.000Z\",\"native_ref\":\"f64551fcd6f07823cb87971cfb914464\",\"step\":\"Gate\",\"event\":\"added\",\"text\":\"plan step added: Gate\",\"text_sha256\":\"b0c7dd1fd4d7698fbdf799874dfcf7aa65706d5080688588aa6392bbcbf9157b\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"b9004b89cd8f2f200f1c1d856ac69df4\",\"gen\":1,\"batch\":1,\"ordinal\":4,\"item\":\"omitted\",\"dialect\":\"codex\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-19T17:00:40.000Z\",\"native_ref\":\"6ca202c88e549dff68c09bfafbfc60b2\",\"omitted_reason\":\"secret\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"b9004b89cd8f2f200f1c1d856ac69df4\",\"gen\":1,\"batch\":1,\"ordinal\":5,\"item\":\"assistant_text\",\"role\":\"assistant\",\"dialect\":\"codex\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-19T17:01:00.000Z\",\"native_ref\":\"f46dd28a5499d8efef0b8fb8ee1ec1c5\",\"text\":\"I will not store that key. The rebase is done.\",\"text_sha256\":\"d1dde8226722df0d790534515ffeb231b1713781b156d3c8ec83d30eb52bb79d\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"b9004b89cd8f2f200f1c1d856ac69df4\",\"gen\":1,\"batch\":1,\"ordinal\":6,\"item\":\"task\",\"dialect\":\"codex\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-19T17:01:10.000Z\",\"native_ref\":\"3946ca64ff78d93ca61090a437cbb6b3\",\"step\":\"Rebase\",\"event\":\"completed\",\"text\":\"plan step completed: Rebase\",\"text_sha256\":\"5c0f222b683cb571be4e32af01b0614aebe583f12ac798f3e78bbe5c1990963f\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"b9004b89cd8f2f200f1c1d856ac69df4\",\"gen\":1,\"batch\":1,\"ordinal\":7,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"codex\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-19T17:01:20.000Z\",\"native_ref\":\"011e39efe22590f4a339ad19cd180f4d\",\"text\":\"Thanks. Continue.\",\"text_sha256\":\"72e8281c06c9d161ff507b6eb05a465976574852f94dbb4365db6f64505b51cf\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"b9004b89cd8f2f200f1c1d856ac69df4\",\"gen\":1,\"batch\":1,\"ordinal\":8,\"item\":\"assistant_text\",\"role\":\"assistant\",\"dialect\":\"codex\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-19T17:01:30.000Z\",\"native_ref\":\"4539e4b4889079c2a00afeae0bfc1439\",\"text\":\"The gate passed. The redeploy is next.\",\"text_sha256\":\"b07bcc2235c915050ba13711c119314edf9b4c61a642c2e5e2fcfef197048edb\"}"
+   ],
+   "skipped": [
+    [
+     "no_time",
+     "a2-undated"
+    ]
+   ],
+   "state": {
+    "adapter_version": "1.0",
+    "ag_hwm": null,
+    "batch": 2,
+    "batch_count": 0,
+    "batch_items": 256,
+    "denylist_sha256": "05205ffd32a9c8710642d24afd6389202c864e75cf59ae4ac0fd8c5ef65bad85",
+    "dialect": "codex",
+    "drop_machine_typed": true,
+    "final": null,
+    "finished": false,
+    "gen": 1,
+    "ordinal": 9,
+    "oversize": {},
+    "plan": [
+     [
+      "t:Rebase",
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     [
+      "t:Gate",
+      [
+       1,
+       0,
+       0
+      ]
+     ]
+    ],
+    "quarantined": false,
+    "screens": true,
+    "seat": "fixture-seat",
+    "src": "b9004b89cd8f2f200f1c1d856ac69df4",
+    "subagent": false,
+    "v": 7
+   }
+  },
+  "5": {
+   "items": [
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"b9004b89cd8f2f200f1c1d856ac69df4\",\"gen\":1,\"batch\":1,\"ordinal\":0,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"codex\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-19T17:00:10.000Z\",\"native_ref\":\"bb82030dbc2bcaba32a90bf2e207a84a\",\"text\":\"Please summarise the plan for the scratch server.\",\"text_sha256\":\"831b3bd08509b9336e17e339cefdd4b48100f4f593e7296632af8a25195fd5c6\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"b9004b89cd8f2f200f1c1d856ac69df4\",\"gen\":1,\"batch\":1,\"ordinal\":1,\"item\":\"assistant_text\",\"role\":\"assistant\",\"dialect\":\"codex\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-19T17:00:20.000Z\",\"native_ref\":\"f55ff16f66f43360266b95db6f8fec01\",\"text\":\"The plan: rebase both branches, gate them, then redeploy the scratch server.\",\"text_sha256\":\"4062824d97f4d59bdc370d4ff48e42c246209c99f31c60d48bcf1c4a001f049a\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"b9004b89cd8f2f200f1c1d856ac69df4\",\"gen\":1,\"batch\":1,\"ordinal\":2,\"item\":\"task\",\"dialect\":\"codex\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-19T17:00:30.000Z\",\"native_ref\":\"f64551fcd6f07823cb87971cfb914464\",\"step\":\"Rebase\",\"event\":\"added\",\"text\":\"plan step added: Rebase\",\"text_sha256\":\"62d16b44a5e49e1a0de3bf9c9d697fb544e6097e15c2b8c67a80e8e7f986008b\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"b9004b89cd8f2f200f1c1d856ac69df4\",\"gen\":1,\"batch\":1,\"ordinal\":3,\"item\":\"task\",\"dialect\":\"codex\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-19T17:00:30.000Z\",\"native_ref\":\"f64551fcd6f07823cb87971cfb914464\",\"step\":\"Gate\",\"event\":\"added\",\"text\":\"plan step added: Gate\",\"text_sha256\":\"b0c7dd1fd4d7698fbdf799874dfcf7aa65706d5080688588aa6392bbcbf9157b\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"b9004b89cd8f2f200f1c1d856ac69df4\",\"gen\":1,\"batch\":1,\"ordinal\":4,\"item\":\"omitted\",\"dialect\":\"codex\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-19T17:00:40.000Z\",\"native_ref\":\"6ca202c88e549dff68c09bfafbfc60b2\",\"omitted_reason\":\"secret\"}"
+   ],
+   "skipped": [],
+   "state": {
+    "adapter_version": "1.0",
+    "ag_hwm": null,
+    "batch": 2,
+    "batch_count": 0,
+    "batch_items": 256,
+    "denylist_sha256": "05205ffd32a9c8710642d24afd6389202c864e75cf59ae4ac0fd8c5ef65bad85",
+    "dialect": "codex",
+    "drop_machine_typed": true,
+    "final": null,
+    "finished": false,
+    "gen": 1,
+    "ordinal": 5,
+    "oversize": {},
+    "plan": [
+     [
+      "t:Rebase",
+      [
+       1,
+       0,
+       0
+      ]
+     ],
+     [
+      "t:Gate",
+      [
+       1,
+       0,
+       0
+      ]
+     ]
+    ],
+    "quarantined": false,
+    "screens": true,
+    "seat": "fixture-seat",
+    "src": "b9004b89cd8f2f200f1c1d856ac69df4",
+    "subagent": false,
+    "v": 7
+   }
+  }
+ },
+ "source_commit": "cd5a68b9bc90ac9128df0fee138b56b8991f58fc"
+}

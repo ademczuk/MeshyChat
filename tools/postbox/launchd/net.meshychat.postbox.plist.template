@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The macOS twin of the Windows task MeshyChat-Postbox (tools/postbox/README.md, "Installing on macOS").
+     Replace __PYTHON__ (an interpreter with psutil) and __POSTBOX_DIR__ (the folder holding postbox.py,
+     config.json and postbox_os.py), save as ~/Library/LaunchAgents/net.meshychat.postbox.plist, then:
+         launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/net.meshychat.postbox.plist
+     KeepAlive restarts a daemon that dies; postbox.lock refuses a second one (it then exits 2 and launchd
+     retries after ThrottleInterval). AbandonProcessGroup is left false (the default), so stopping the job
+     stops the daemon's whole process group, its postbox_child.py shims and their listeners included. -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>net.meshychat.postbox</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>__PYTHON__</string>
+    <string>__POSTBOX_DIR__/postbox.py</string>
+  </array>
+  <key>WorkingDirectory</key><string>__POSTBOX_DIR__</string>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>ThrottleInterval</key><integer>30</integer>
+  <key>ProcessType</key><string>Background</string>
+  <key>StandardOutPath</key><string>__POSTBOX_DIR__/postbox.launchd.out.log</string>
+  <key>StandardErrorPath</key><string>__POSTBOX_DIR__/postbox.launchd.err.log</string>
+</dict>
+</plist>

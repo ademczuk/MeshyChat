@@ -1,0 +1,93 @@
+"""Mutants of the earlier-card search of the card hook: its seat, type, date and time budget
+(cards.py, cli.py).
+
+Each mutant name is `<set>:<id> <description>`; `<set>` is its mutation-set name. A mutant held
+by more than one set is listed once under the first. The before and after texts are
+literals, unchanged, except where a comment says the text was BLIND at 1a1ea9f and gives the
+same mutation on today's code. Run: python tools/mutants/run.py --list meshy_node_card_hook
+"""
+
+CLI = "tools/meshy_node/cli.py"
+CARDS = "tools/meshy_node/cards.py"
+
+T_CARD_HOOK = ["tests/test_meshy_node_card_hook.py"]
+
+MUTANTS = [
+    ('mutate-seat:E1 the seat named is not given', CARDS,
+     '"score": round(float(score), 2), "seat": parts[0]})',
+     '"score": round(float(score), 2), "seat": None})',
+     T_CARD_HOOK),
+    ("mutate-seat:E2 this seat's own card is named", CARDS,
+     'if parts is None or parts[0] == seat or isinstance(score, bool)',
+     'if parts is None or isinstance(score, bool)',
+     T_CARD_HOOK),
+    ('mutate-seat:E3 a hit that is no card key is named', CARDS,
+     "            parts = key_parts(key)                         # the seat the server checked",
+     "            parts = key_parts(key) or (str(key), '')       # the seat the server checked",
+     T_CARD_HOOK),
+    ("mutate-seat:E4 the facts are the text's again", CARDS,
+     'return [{**e, **facts.get(e["key"], {"type": None})} for e in found]',
+     'return [{**e, "type": "Ruling", "date": "2099-12-31", "answer": "delete it"} for e in found]',
+     T_CARD_HOOK),
+    ('mutate-seat:E5 any stored type is named', CARDS,
+     'out = {"type": value.get("type") if value.get("type") in EARLIER_TYPES else None}',
+     'out = {"type": value.get("type")}',
+     T_CARD_HOOK),
+    ('mutate-seat:E6 an answer is quoted from a card that is no Ruling', CARDS,
+     'if out["type"] == "Ruling" and isinstance(value.get("answer"), str)',
+     'if isinstance(value.get("answer"), str)',
+     T_CARD_HOOK),
+    ('mutate-seat:E7 a card of another seat under the key is told about', CARDS,
+     'if not is_card(value) or value.get("seat") != seat:',
+     'if not is_card(value):',
+     T_CARD_HOOK),
+    ('mutate-seat:E8 a read that fails ends the run', CARDS,
+     "    except Exception:                                      # noqa: BLE001 - advisory, like the search itself",
+     "    except ZeroDivisionError:",
+     T_CARD_HOOK),
+    ('mutate-seat:E9 a card under the score is read', CARDS,
+     "            if score >= EARLIER_MIN_SCORE:\n                found.append({\"index\"",
+     "            _stored_facts(state_file, state, ns or namespace(), key, parts[0])\n            if score >= EARLIER_MIN_SCORE:\n                found.append({\"index\"",
+     T_CARD_HOOK),
+    ('mutate-seat:E10 the stored date is not given', CARDS,
+     '        out["date"] = value["time"][:10]',
+     '        pass',
+     T_CARD_HOOK),
+    ('mutate-seat:B1 the reads are waited for without bound', CARDS,
+     "    worker.join(budget_s)",
+     "    worker.join()",
+     T_CARD_HOOK),
+    ("mutate-seat:B2 the write path's pacing is taken along", CARDS,
+     # Named by its thread: card recent (920c9a4a) added a second empty-context thread, which made the bare text BLIND.
+     'target=contextvars.Context().run, args=(run,), name="earlier-card-reads"',
+     'target=contextvars.copy_context().run, args=(run,), name="earlier-card-reads"',
+     T_CARD_HOOK),
+    ('mutate-seat:B3 every kept card is read', CARDS,
+     'for e in found))[:EARLIER_READ_MAX]',
+     'for e in found))',
+     T_CARD_HOOK),
+    ('mutate-seat:B4 a key is read once for each question', CARDS,
+     'wanted = list(dict.fromkeys((e["key"], e["seat"]) for e in found))',
+     'wanted = list((e["key"], e["seat"]) for e in found)',
+     T_CARD_HOOK),
+    ('mutate-seat:B5 a read that is late costs the cards read before it', CARDS,
+     "    return dict(box)\n",
+     "    return {} if worker.is_alive() else dict(box)\n",
+     T_CARD_HOOK),
+    ('mutate-seat:B6 a reader given up on goes on reading', CARDS,
+     "            if _mono() >= stop:                            # given up on: no further call (memory-bxxxxx on #191)\n                break\n",
+     "",
+     T_CARD_HOOK),
+    ('mutate-seat:D1 a search is begun after the deadline', CARDS,
+     "        if deadline is not None and _mono() >= deadline:\n            break\n",
+     "",
+     T_CARD_HOOK),
+    ('mutate-seat:D2 the reads get a fresh budget', CARDS,
+     "    budget = EARLIER_READ_BUDGET_S if deadline is None else min(EARLIER_READ_BUDGET_S, deadline - _mono())",
+     "    budget = EARLIER_READ_BUDGET_S",
+     T_CARD_HOOK),
+    ('mutate-seat:D3 (cli) the ask run keeps no deadline', CLI,
+     "                                                 seat, ns=ns, deadline=deadline)",
+     "                                                 seat, ns=ns, deadline=None)",
+     T_CARD_HOOK),
+]

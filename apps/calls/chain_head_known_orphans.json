@@ -1,0 +1,11 @@
+{
+  "about": "STATUS D08, operator decision 53 (2026-09-27). Chain-head anchors whose chains production frame retention erased (sql/111's chained pass; stopped 2026-09-23). Found by the operator-approved read of the production standby on 2026-09-27, replayed to 07:44Z (decision 47): signed head frame missing, 0 live frames. apps/calls/chain_head.py reports a truncated verdict for an anchor that matches an entry EXACTLY (chain_id, head_frame_id, frame_count, signing_kid) AND is still in the state recorded here (signed head frame missing, 0 live frames) at WARN, at most once an hour per anchor; any other truncation, including a listed chain whose head frame id is back with another hash or which holds frames again, stays an ERROR. The anchors themselves are not moved or changed. Add an entry only with an incident reference and the anchor's exact signed state.",
+  "orphans": [
+    {"chain_id": "9309b1aa-531e-42a6-a571-d4618f49c4c1", "head_frame_id": 74666, "frame_count": 862, "signing_kid": "6dd0bdfd0cc2554b", "incident": "asdlc incidents/2026-09-21-retention-orphans-chain-anchors.md"},
+    {"chain_id": "259a99bf-7b90-4d45-bd59-cbd5cdec5075", "head_frame_id": 75551, "frame_count": 192, "signing_kid": "6dd0bdfd0cc2554b", "incident": "asdlc incidents/2026-09-21-retention-orphans-chain-anchors.md"},
+    {"chain_id": "5476fcb2-28e9-4b0f-bb71-451dec8f9a5c", "head_frame_id": 75557, "frame_count": 49, "signing_kid": "6dd0bdfd0cc2554b", "incident": "asdlc incidents/2026-09-21-retention-orphans-chain-anchors.md"},
+    {"chain_id": "6e9bda54-26c4-41e0-9fc1-3e4077934d45", "head_frame_id": 101143, "frame_count": 5, "signing_kid": "6dd0bdfd0cc2554b", "incident": "asdlc incidents/2026-09-21-retention-orphans-chain-anchors.md"},
+    {"chain_id": "b1e70ac6-80c0-457c-8314-d8d45aa0defc", "head_frame_id": 116291, "frame_count": 2, "signing_kid": "6dd0bdfd0cc2554b", "incident": "asdlc incidents/2026-09-21-retention-orphans-chain-anchors.md"},
+    {"chain_id": "d0d660a1-1522-4141-a24f-433070732f30", "head_frame_id": 116358, "frame_count": 3, "signing_kid": "6dd0bdfd0cc2554b", "incident": "asdlc incidents/2026-09-21-retention-orphans-chain-anchors.md"}
+  ]
+}

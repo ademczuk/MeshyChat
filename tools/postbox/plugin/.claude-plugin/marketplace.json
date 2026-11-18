@@ -1,0 +1,11 @@
+{
+  "name": "meshychat-marketplace",
+  "owner": {"name": "meshy fleet on HQB"},
+  "plugins": [
+    {
+      "name": "meshy",
+      "source": "./meshy",
+      "description": "MeshyChat postbox channel for this box's agent seats."
+    }
+  ]
+}

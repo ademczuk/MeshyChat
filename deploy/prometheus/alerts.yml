@@ -1,0 +1,114 @@
+# Alert rules for MeshyChat (E01, F28). Load under rule_files next to scrape.yml.
+#
+# SHIPPED AS A FILE, NOT WIRED: routing these to a person (Alertmanager and a receiver) is
+# production's, and is the open question in the E01 report.
+#
+# tests/test_metrics.py reads this file: every expr is ONE line, names only series
+# apps/core/metrics.py emits (or Prometheus's own `up`), and every rule has a `for`, a
+# severity and a summary. Keep that shape; the checker is line-based.
+
+groups:
+  - name: meshychat
+    rules:
+      - alert: MeshyChatDown
+        expr: up{job="meshychat"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "MeshyChat target {{ $labels.instance }} has not answered a scrape for 2 minutes"
+
+      - alert: MeshyChatDatabaseUnreadable
+        expr: meshychat_db_up{job="meshychat"} == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "{{ $labels.instance }} could not read its database within the scrape deadline for 5 minutes"
+
+      # F28. The NOTIFY queue is shared, 8 GB by default. At the ~200 bytes a message and the
+      # write rate measured in docs/DIVERGENCES.md 014 it stays near 0; a sustained 1% is
+      # about 80 MB unread, which only a listener that stopped reading produces. When it
+      # fills, the WRITER's COMMIT fails (docs/DIVERGENCES.md 020).
+      - alert: MeshyChatNotifyQueueGrowing
+        expr: meshychat_pg_notification_queue_usage{job="meshychat"} > 0.01
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: "NOTIFY queue {{ $value | humanizePercentage }} full on {{ $labels.instance }}: a LISTEN connection has stopped reading"
+
+      - alert: MeshyChatNotifyQueueFilling
+        expr: meshychat_pg_notification_queue_usage{job="meshychat"} > 0.5
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "NOTIFY queue {{ $value | humanizePercentage }} full: writes will fail at COMMIT when it is full; find the listener holding its tail (pg_stat_activity, LISTEN, idle in transaction)"
+
+      # The gauge is ABSENT, never 0, when a scrape could not read it, so an unmeasured
+      # queue must page too, or a database outage would silence the queue alert. Per
+      # target: every instance that answers its scrape but carries no queue reading.
+      # `absent(<series>)` would fire only when EVERY target had lost it.
+      - alert: MeshyChatNotifyQueueUnmeasured
+        expr: up{job="meshychat"} == 1 unless on(instance, job) meshychat_pg_notification_queue_usage{job="meshychat"}
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "{{ $labels.instance }} answers its scrape but has had no NOTIFY queue reading for 10 minutes"
+
+      # No target at all (service discovery lost the job, or the scrape config is not
+      # loaded): nothing above can fire, because every rule needs a series to exist.
+      - alert: MeshyChatNoTargets
+        expr: absent(up{job="meshychat"})
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Prometheus has no MeshyChat target to scrape"
+
+      - alert: MeshyChatServerErrors
+        expr: sum by (instance) (rate(meshychat_http_requests_total{job="meshychat",status=~"5.."}[5m])) / sum by (instance) (rate(meshychat_http_requests_total{job="meshychat"}[5m])) > 0.05
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "More than 5% of responses from {{ $labels.instance }} are 5xx"
+
+      # E01 server-side liveness (operator decision 55, 2026-09-27). Both series are read
+      # from background_job_leases through the operator commands' own functions, so these
+      # rules agree with `run_jobs --explain` and `run_call_worker --health`. Every server
+      # reports the same rows, so each fires once per instance; the value is the same.
+      #
+      # A registered job claimable and unclaimed for more than 300 s: run_jobs --explain's
+      # own nothing_is_ticking threshold (apps/jobs/explain.STALE_DUE_SECS). +Inf is a job
+      # no process ever ticked. The finding is the worker (run_jobs --loop), not the job.
+      - alert: MeshyChatJobsNotTicking
+        expr: meshychat_job_claimable_seconds{job="meshychat"} > 300
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Job {{ $labels.job_name }} has been due and unclaimed for {{ $value | humanizeDuration }}: run_jobs is not ticking it (run_jobs --explain)"
+
+      # The call deadline sweep has not finished for more than 30 s, or never has (+Inf):
+      # run_call_worker --health's own threshold (apps/calls/worker.SWEEP_STALE_ALERT_SECS).
+      # Calls whose target never answers are then not timed out at their deadline.
+      - alert: MeshyChatCallWorkerStale
+        expr: meshychat_call_sweep_age_seconds{job="meshychat"} > 30
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "The call deadline sweep last finished {{ $value | humanizeDuration }} ago: run_call_worker is down or stuck (run_call_worker --health)"
+
+      # F04 (operator decision 60, 2026-09-27): a socket's send queue dropped frames. The
+      # drop is silent to the client by design; this is where it is seen.
+      - alert: MeshyChatWsSendQueueDropping
+        expr: increase(meshychat_ws_send_queue_dropped_total{job="meshychat"}[10m]) > 0
+        for: 0m
+        labels:
+          severity: warning
+        annotations:
+          summary: "{{ $labels.instance }} dropped WebSocket frames from a full send queue in the last 10 minutes: a client is not keeping up (grep the log for 'WS send queue dropped')"

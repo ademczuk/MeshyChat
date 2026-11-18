@@ -1,0 +1,31 @@
+# The Python this server runs on, stated rather than remembered (divergence 040).
+#
+# A [project] table and one uv setting, on purpose. No [build-system]: nothing here is built or
+# installed as a package, and `pip install -r requirements.txt -r requirements-dev.txt` stays
+# the install. No other [tool.*] table: tests/conftest.py stays the only pytest configuration.
+#
+# [tool.uv] managed = false, the operator's decision of 2026-09-24: uv leaves this project
+# alone. Without it `uv run` and `uv sync` read [project] and, in a checkout whose .venv is not
+# 3.13, delete it and make an empty 3.13 one; on a 3.13 .venv `uv sync` uninstalls every
+# package, because [project] lists no dependencies. On HQD that .venv is shared by every
+# running agent. With it, `uv sync` refuses ("The project is marked as unmanaged") and
+# `uv run` runs in the .venv it finds (divergence 040, section 2).
+#
+# NOTE: nothing installs from this file, so nothing enforces the pin at install time today:
+# `pip install -r` does not read it, `pip install .` stops on package discovery before it
+# does, and uv, told to leave the project alone, no longer checks it.
+# tests/test_python_pin_and_biscuit_decision.py holds the declaration. Nothing at runtime
+# checks it either; the design has no interpreter guard.
+#
+# Why 3.13 and not 3.14: biscuit-python 0.4.0 (object-level capability tokens, B07,
+# docs/design/biscuit-capabilities.md) publishes wheels for cp37 to cp313 and none for cp314,
+# its source build refuses 3.14 (PyO3 0.24.1 supports up to 3.13), and the forward-
+# compatibility build fails to compile. Design section 1.1 has the measurements.
+
+[project]
+name = "meshychat"
+version = "0.0.0"
+requires-python = ">=3.13,<3.14"
+
+[tool.uv]
+managed = false

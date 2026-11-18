@@ -1,0 +1,130 @@
+{
+ "cuts": {
+  "1": {
+   "items": [
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"4366e77abe6872318584881300cce393\",\"gen\":1,\"batch\":1,\"ordinal\":0,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"claude\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T09:00:00.000Z\",\"native_ref\":\"bb82030dbc2bcaba32a90bf2e207a84a\",\"text\":\"First synthetic Claude prompt.\",\"text_sha256\":\"8f3b211b7da1f5626024ba7b629deda295c977e5c12fc8c6323efceea8f4c4d0\"}"
+   ],
+   "skipped": [],
+   "state": {
+    "adapter_version": "1.0",
+    "ag_hwm": null,
+    "batch": 2,
+    "batch_count": 0,
+    "batch_items": 256,
+    "denylist_sha256": "05205ffd32a9c8710642d24afd6389202c864e75cf59ae4ac0fd8c5ef65bad85",
+    "dialect": "claude",
+    "drop_machine_typed": true,
+    "final": null,
+    "finished": false,
+    "gen": 1,
+    "ordinal": 1,
+    "oversize": {},
+    "plan": [],
+    "quarantined": false,
+    "screens": false,
+    "seat": "fixture-seat",
+    "src": "4366e77abe6872318584881300cce393",
+    "subagent": false,
+    "v": 7
+   }
+  },
+  "2": {
+   "items": [
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"4366e77abe6872318584881300cce393\",\"gen\":1,\"batch\":1,\"ordinal\":0,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"claude\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T09:00:00.000Z\",\"native_ref\":\"bb82030dbc2bcaba32a90bf2e207a84a\",\"text\":\"First synthetic Claude prompt.\",\"text_sha256\":\"8f3b211b7da1f5626024ba7b629deda295c977e5c12fc8c6323efceea8f4c4d0\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"4366e77abe6872318584881300cce393\",\"gen\":1,\"batch\":1,\"ordinal\":1,\"item\":\"assistant_text\",\"role\":\"assistant\",\"dialect\":\"claude\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T09:00:05.000Z\",\"native_ref\":\"f55ff16f66f43360266b95db6f8fec01\",\"text\":\"Planning two synthetic tasks.\",\"text_sha256\":\"ebe11f5faf408f77b59ae5544cdac41421aa8e646f2d5aebc4cea8dabf522e2c\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"4366e77abe6872318584881300cce393\",\"gen\":1,\"batch\":1,\"ordinal\":2,\"item\":\"task\",\"dialect\":\"claude\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T09:00:05.000Z\",\"native_ref\":\"f55ff16f66f43360266b95db6f8fec01\",\"step\":\"Migrate v7 state\",\"event\":\"added\",\"text\":\"plan step added: Migrate v7 state\",\"text_sha256\":\"8c1c8706d42edfc7761682118a95a3531a786c364a183f7d01e3f7d5d4a9ed7a\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"4366e77abe6872318584881300cce393\",\"gen\":1,\"batch\":1,\"ordinal\":3,\"item\":\"task\",\"dialect\":\"claude\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T09:00:05.000Z\",\"native_ref\":\"f55ff16f66f43360266b95db6f8fec01\",\"step\":\"Verify byte parity\",\"event\":\"added\",\"text\":\"plan step added: Verify byte parity\",\"text_sha256\":\"e3c9b64a82a963adafd844c40c205ae0f31a318cf29a343588c6dcadd67b2ae1\"}"
+   ],
+   "skipped": [],
+   "state": {
+    "adapter_version": "1.0",
+    "ag_hwm": null,
+    "batch": 2,
+    "batch_count": 0,
+    "batch_items": 256,
+    "denylist_sha256": "05205ffd32a9c8710642d24afd6389202c864e75cf59ae4ac0fd8c5ef65bad85",
+    "dialect": "claude",
+    "drop_machine_typed": true,
+    "final": null,
+    "finished": false,
+    "gen": 1,
+    "ordinal": 4,
+    "oversize": {},
+    "plan": [
+     [
+      "t:Migrate v7 state",
+      [
+       0,
+       1,
+       0
+      ]
+     ],
+     [
+      "t:Verify byte parity",
+      [
+       1,
+       0,
+       0
+      ]
+     ]
+    ],
+    "quarantined": false,
+    "screens": false,
+    "seat": "fixture-seat",
+    "src": "4366e77abe6872318584881300cce393",
+    "subagent": false,
+    "v": 7
+   }
+  },
+  "3": {
+   "items": [
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"4366e77abe6872318584881300cce393\",\"gen\":1,\"batch\":1,\"ordinal\":0,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"claude\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T09:00:00.000Z\",\"native_ref\":\"bb82030dbc2bcaba32a90bf2e207a84a\",\"text\":\"First synthetic Claude prompt.\",\"text_sha256\":\"8f3b211b7da1f5626024ba7b629deda295c977e5c12fc8c6323efceea8f4c4d0\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"4366e77abe6872318584881300cce393\",\"gen\":1,\"batch\":1,\"ordinal\":1,\"item\":\"assistant_text\",\"role\":\"assistant\",\"dialect\":\"claude\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T09:00:05.000Z\",\"native_ref\":\"f55ff16f66f43360266b95db6f8fec01\",\"text\":\"Planning two synthetic tasks.\",\"text_sha256\":\"ebe11f5faf408f77b59ae5544cdac41421aa8e646f2d5aebc4cea8dabf522e2c\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"4366e77abe6872318584881300cce393\",\"gen\":1,\"batch\":1,\"ordinal\":2,\"item\":\"task\",\"dialect\":\"claude\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T09:00:05.000Z\",\"native_ref\":\"f55ff16f66f43360266b95db6f8fec01\",\"step\":\"Migrate v7 state\",\"event\":\"added\",\"text\":\"plan step added: Migrate v7 state\",\"text_sha256\":\"8c1c8706d42edfc7761682118a95a3531a786c364a183f7d01e3f7d5d4a9ed7a\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"4366e77abe6872318584881300cce393\",\"gen\":1,\"batch\":1,\"ordinal\":3,\"item\":\"task\",\"dialect\":\"claude\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T09:00:05.000Z\",\"native_ref\":\"f55ff16f66f43360266b95db6f8fec01\",\"step\":\"Verify byte parity\",\"event\":\"added\",\"text\":\"plan step added: Verify byte parity\",\"text_sha256\":\"e3c9b64a82a963adafd844c40c205ae0f31a318cf29a343588c6dcadd67b2ae1\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"4366e77abe6872318584881300cce393\",\"gen\":1,\"batch\":1,\"ordinal\":4,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"claude\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T09:01:00.000Z\",\"native_ref\":\"6ca202c88e549dff68c09bfafbfc60b2\",\"text\":\"Continue after the synthetic checkpoint.\",\"text_sha256\":\"a1eac9129ca529deae5921a277549ccc167f605fe447ee83e1dc8ea9b1d51e93\"}"
+   ],
+   "skipped": [],
+   "state": {
+    "adapter_version": "1.0",
+    "ag_hwm": null,
+    "batch": 2,
+    "batch_count": 0,
+    "batch_items": 256,
+    "denylist_sha256": "05205ffd32a9c8710642d24afd6389202c864e75cf59ae4ac0fd8c5ef65bad85",
+    "dialect": "claude",
+    "drop_machine_typed": true,
+    "final": null,
+    "finished": false,
+    "gen": 1,
+    "ordinal": 5,
+    "oversize": {},
+    "plan": [
+     [
+      "t:Migrate v7 state",
+      [
+       0,
+       1,
+       0
+      ]
+     ],
+     [
+      "t:Verify byte parity",
+      [
+       1,
+       0,
+       0
+      ]
+     ]
+    ],
+    "quarantined": false,
+    "screens": false,
+    "seat": "fixture-seat",
+    "src": "4366e77abe6872318584881300cce393",
+    "subagent": false,
+    "v": 7
+   }
+  }
+ },
+ "source_commit": "cd5a68b9bc90ac9128df0fee138b56b8991f58fc"
+}

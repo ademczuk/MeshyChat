@@ -1,0 +1,325 @@
+{
+ "cuts": {
+  "1": {
+   "items": [],
+   "skipped": [
+    [
+     "kimi_bookkeeping",
+     null
+    ]
+   ],
+   "state": {
+    "adapter_version": "1.0",
+    "ag_hwm": null,
+    "batch": 1,
+    "batch_count": 0,
+    "batch_items": 256,
+    "denylist_sha256": "05205ffd32a9c8710642d24afd6389202c864e75cf59ae4ac0fd8c5ef65bad85",
+    "dialect": "kimi",
+    "drop_machine_typed": true,
+    "final": null,
+    "finished": false,
+    "gen": 1,
+    "ordinal": 0,
+    "oversize": {},
+    "plan": [],
+    "quarantined": false,
+    "screens": true,
+    "seat": "fixture-seat",
+    "src": "a23d006bb020a81dfd1afa15968e07dc",
+    "subagent": false,
+    "v": 7
+   }
+  },
+  "13": {
+   "items": [
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"a23d006bb020a81dfd1afa15968e07dc\",\"gen\":1,\"batch\":1,\"ordinal\":0,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"kimi\",\"adapter_version\":\"1.0\",\"time\":\"2025-10-17T06:00:00.123Z\",\"native_ref\":\"97bf10bd2fb649a7fde1bc49b23ec6f4\",\"text\":\"the operator's first question\",\"text_sha256\":\"57ba306c8f927a3a1ef2b7f41281eaec64e056353bbcee870e9355f4afc1e142\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"a23d006bb020a81dfd1afa15968e07dc\",\"gen\":1,\"batch\":1,\"ordinal\":1,\"item\":\"assistant_text\",\"role\":\"assistant\",\"dialect\":\"kimi\",\"adapter_version\":\"1.0\",\"time\":\"2025-10-17T06:00:00.123Z\",\"native_ref\":\"1038fd9f36d82e480f53354a2cdd87a4\",\"text\":\"First answer block.\",\"text_sha256\":\"73c76afb06ad44eb75e8d51e97e5a26c7cccaf7c89e0d9c9b7a83445c241a908\"}"
+   ],
+   "skipped": [
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_loop_event",
+     "ev-sb"
+    ],
+    [
+     "kimi_thinking",
+     "ev-th1"
+    ],
+    [
+     "kimi_loop_event",
+     "ev-tc"
+    ],
+    [
+     "kimi_loop_event",
+     "ev-tr"
+    ]
+   ],
+   "state": {
+    "adapter_version": "1.0",
+    "ag_hwm": null,
+    "batch": 2,
+    "batch_count": 0,
+    "batch_items": 256,
+    "denylist_sha256": "05205ffd32a9c8710642d24afd6389202c864e75cf59ae4ac0fd8c5ef65bad85",
+    "dialect": "kimi",
+    "drop_machine_typed": true,
+    "final": null,
+    "finished": false,
+    "gen": 1,
+    "ordinal": 2,
+    "oversize": {},
+    "plan": [],
+    "quarantined": false,
+    "screens": true,
+    "seat": "fixture-seat",
+    "src": "a23d006bb020a81dfd1afa15968e07dc",
+    "subagent": false,
+    "v": 7
+   }
+  },
+  "20": {
+   "items": [
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"a23d006bb020a81dfd1afa15968e07dc\",\"gen\":1,\"batch\":1,\"ordinal\":0,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"kimi\",\"adapter_version\":\"1.0\",\"time\":\"2025-10-17T06:00:00.123Z\",\"native_ref\":\"97bf10bd2fb649a7fde1bc49b23ec6f4\",\"text\":\"the operator's first question\",\"text_sha256\":\"57ba306c8f927a3a1ef2b7f41281eaec64e056353bbcee870e9355f4afc1e142\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"a23d006bb020a81dfd1afa15968e07dc\",\"gen\":1,\"batch\":1,\"ordinal\":1,\"item\":\"assistant_text\",\"role\":\"assistant\",\"dialect\":\"kimi\",\"adapter_version\":\"1.0\",\"time\":\"2025-10-17T06:00:00.123Z\",\"native_ref\":\"1038fd9f36d82e480f53354a2cdd87a4\",\"text\":\"First answer block.\",\"text_sha256\":\"73c76afb06ad44eb75e8d51e97e5a26c7cccaf7c89e0d9c9b7a83445c241a908\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"a23d006bb020a81dfd1afa15968e07dc\",\"gen\":1,\"batch\":1,\"ordinal\":2,\"item\":\"assistant_text\",\"role\":\"assistant\",\"dialect\":\"kimi\",\"adapter_version\":\"1.0\",\"time\":\"2025-10-17T06:00:00.123Z\",\"native_ref\":\"9dcdcfa16a57defc15a8f6020545e178\",\"text\":\"Second answer block.\",\"text_sha256\":\"ee5c8ab38610c9f83bd2da0dbc397a3cb9d2e421723a9388aa7762bb25a5bbde\"}"
+   ],
+   "skipped": [
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_loop_event",
+     "ev-sb"
+    ],
+    [
+     "kimi_thinking",
+     "ev-th1"
+    ],
+    [
+     "kimi_loop_event",
+     "ev-tc"
+    ],
+    [
+     "kimi_loop_event",
+     "ev-tr"
+    ],
+    [
+     "kimi_loop_event",
+     "ev-se"
+    ],
+    [
+     "kimi_injection_agents_md",
+     "msg_inj"
+    ],
+    [
+     "kimi_cron_job",
+     "msg_cron"
+    ],
+    [
+     "kimi_system_trigger",
+     "msg_sys"
+    ],
+    [
+     "kimi_origin_task",
+     "msg_task"
+    ],
+    [
+     "kimi_origin_skill_activation",
+     "msg_skill"
+    ]
+   ],
+   "state": {
+    "adapter_version": "1.0",
+    "ag_hwm": null,
+    "batch": 2,
+    "batch_count": 0,
+    "batch_items": 256,
+    "denylist_sha256": "05205ffd32a9c8710642d24afd6389202c864e75cf59ae4ac0fd8c5ef65bad85",
+    "dialect": "kimi",
+    "drop_machine_typed": true,
+    "final": null,
+    "finished": false,
+    "gen": 1,
+    "ordinal": 3,
+    "oversize": {},
+    "plan": [],
+    "quarantined": false,
+    "screens": true,
+    "seat": "fixture-seat",
+    "src": "a23d006bb020a81dfd1afa15968e07dc",
+    "subagent": false,
+    "v": 7
+   }
+  },
+  "25": {
+   "items": [
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"a23d006bb020a81dfd1afa15968e07dc\",\"gen\":1,\"batch\":1,\"ordinal\":0,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"kimi\",\"adapter_version\":\"1.0\",\"time\":\"2025-10-17T06:00:00.123Z\",\"native_ref\":\"97bf10bd2fb649a7fde1bc49b23ec6f4\",\"text\":\"the operator's first question\",\"text_sha256\":\"57ba306c8f927a3a1ef2b7f41281eaec64e056353bbcee870e9355f4afc1e142\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"a23d006bb020a81dfd1afa15968e07dc\",\"gen\":1,\"batch\":1,\"ordinal\":1,\"item\":\"assistant_text\",\"role\":\"assistant\",\"dialect\":\"kimi\",\"adapter_version\":\"1.0\",\"time\":\"2025-10-17T06:00:00.123Z\",\"native_ref\":\"1038fd9f36d82e480f53354a2cdd87a4\",\"text\":\"First answer block.\",\"text_sha256\":\"73c76afb06ad44eb75e8d51e97e5a26c7cccaf7c89e0d9c9b7a83445c241a908\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"a23d006bb020a81dfd1afa15968e07dc\",\"gen\":1,\"batch\":1,\"ordinal\":2,\"item\":\"assistant_text\",\"role\":\"assistant\",\"dialect\":\"kimi\",\"adapter_version\":\"1.0\",\"time\":\"2025-10-17T06:00:00.123Z\",\"native_ref\":\"9dcdcfa16a57defc15a8f6020545e178\",\"text\":\"Second answer block.\",\"text_sha256\":\"ee5c8ab38610c9f83bd2da0dbc397a3cb9d2e421723a9388aa7762bb25a5bbde\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"a23d006bb020a81dfd1afa15968e07dc\",\"gen\":1,\"batch\":1,\"ordinal\":3,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"kimi\",\"adapter_version\":\"1.0\",\"time\":\"2025-10-17T06:00:00.123Z\",\"native_ref\":\"648e56fa599533c25378113049c4d5fe\",\"text\":\"the operator's second question\",\"text_sha256\":\"a711d8e4baa409195fb975f62c37bd142241fb6fd96a3f2b3c94edacea2e35ee\"}"
+   ],
+   "skipped": [
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ],
+    [
+     "kimi_loop_event",
+     "ev-sb"
+    ],
+    [
+     "kimi_thinking",
+     "ev-th1"
+    ],
+    [
+     "kimi_loop_event",
+     "ev-tc"
+    ],
+    [
+     "kimi_loop_event",
+     "ev-tr"
+    ],
+    [
+     "kimi_loop_event",
+     "ev-se"
+    ],
+    [
+     "kimi_injection_agents_md",
+     "msg_inj"
+    ],
+    [
+     "kimi_cron_job",
+     "msg_cron"
+    ],
+    [
+     "kimi_system_trigger",
+     "msg_sys"
+    ],
+    [
+     "kimi_origin_task",
+     "msg_task"
+    ],
+    [
+     "kimi_origin_skill_activation",
+     "msg_skill"
+    ],
+    [
+     "kimi_compaction",
+     null
+    ],
+    [
+     "kimi_undo",
+     null
+    ],
+    [
+     "kimi_clear",
+     null
+    ],
+    [
+     "kimi_bookkeeping",
+     null
+    ]
+   ],
+   "state": {
+    "adapter_version": "1.0",
+    "ag_hwm": null,
+    "batch": 2,
+    "batch_count": 0,
+    "batch_items": 256,
+    "denylist_sha256": "05205ffd32a9c8710642d24afd6389202c864e75cf59ae4ac0fd8c5ef65bad85",
+    "dialect": "kimi",
+    "drop_machine_typed": true,
+    "final": null,
+    "finished": false,
+    "gen": 1,
+    "ordinal": 4,
+    "oversize": {},
+    "plan": [],
+    "quarantined": false,
+    "screens": true,
+    "seat": "fixture-seat",
+    "src": "a23d006bb020a81dfd1afa15968e07dc",
+    "subagent": false,
+    "v": 7
+   }
+  }
+ },
+ "written_by": "context_parser at main cd5a68b9 (STATE_VERSION 7)"
+}

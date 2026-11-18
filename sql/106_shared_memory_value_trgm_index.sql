@@ -1,0 +1,27 @@
+-- no-transaction
+-- 106: the trigram index itself, split from migration 105's setup (extension
+-- and the `meshy_jsonb_values_text` function) for a mechanical reason, not a
+-- stylistic one: `CREATE INDEX CONCURRENTLY` refuses to run inside ANY
+-- transaction, including the IMPLICIT one Postgres wraps around a
+-- multi-statement simple-query message, which is how sqlx sends a migration
+-- file's SQL text when it has no bind parameters. sqlx's own `no_tx` flag on
+-- this file only skips sqlx's OWN explicit `BEGIN`/`COMMIT`; it has no control
+-- over Postgres's protocol-level wrapping of a batch that itself contains more
+-- than one statement. Keeping this file to the bare CONCURRENTLY statement,
+-- alone, means the batch IS a single statement, so no implicit transaction is
+-- opened at all. Migration 101 is the working precedent for this exact shape.
+--
+-- CONCURRENTLY and lock_timeout. shared_memory is the fleet's hot write table
+-- and migrations run at meshy-server boot. A plain in-transaction CREATE INDEX
+-- takes a SHARE lock for the whole build and, if it queues behind any
+-- long-running transaction, blocks every subsequent write behind it: a
+-- mesh-wide write outage during deploy, this project's documented substrate-
+-- DDL incident class. CONCURRENTLY avoids the blocking SHARE lock; the
+-- `SET lock_timeout = '5s'` from migration 105 (a plain, non-LOCAL session
+-- setting, so it survives past that migration's own commit) is still in
+-- effect on this connection when this statement runs, bounding how long this
+-- build will wait to acquire what locks it does need. IF NOT EXISTS keeps it
+-- idempotent; a CONCURRENTLY build interrupted mid-flight on prod leaves an
+-- INVALID index that must be dropped and re-run.
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_shared_memory_value_trgm
+ON shared_memory USING GIN (meshy_jsonb_values_text(value) gin_trgm_ops);

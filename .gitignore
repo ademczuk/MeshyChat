@@ -1,0 +1,18 @@
+.venv/
+.venv313/
+__pycache__/
+*.pyc
+.env
+.pytest_cache/
+secrets/
+*.log
+# The capability root key (divergence 040, Q10): the key command refuses a path inside the
+# checkout; a key file that reaches the tree anyway is never committed.
+*.key
+
+# HQD production folder files that must never be committed (pxx): the env file with the DSN, the passfile folder,
+# and the runtime state the scripts write beside themselves.
+deploy/hqd/prod/env.ps1
+deploy/hqd/prod/secrets/
+deploy/hqd/prod/MAINTENANCE
+deploy/hqd/prod/pids.json

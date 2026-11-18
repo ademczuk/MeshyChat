@@ -1,0 +1,34 @@
+# Prometheus scrape config for MeshyChat's GET /v1/metrics (apps/core/metrics.py, E01).
+#
+# SHIPPED AS A FILE, NOT WIRED. Pointing a running Prometheus at this, and an Alertmanager at
+# alerts.yml with a receiver that reaches a person, is production's (docs/DIVERGENCES.md 035,
+# dated paragraph 2026-09-26). Merge the job below into prometheus.yml's scrape_configs and
+# list alerts.yml under rule_files.
+#
+# The route is OFF until the server has MESHY_METRICS_TOKEN; then it wants
+# `Authorization: Bearer <token>`. The token lives in a file readable by Prometheus only,
+# never in this config: tests/test_metrics.py refuses an inline credential here.
+#
+# tests/test_metrics.py reads this file: metrics_path must be the route, the credential must
+# come from a file, and the job name must be the one alerts.yml selects on.
+
+scrape_configs:
+  - job_name: meshychat
+    metrics_path: /v1/metrics
+    # 2026-09-27 (E01, operator decision 55): plain http. HQB's Prometheus scrapes this over
+    # the LAN, and after the cutover to HQD there is no TLS in front of the server by
+    # operator decision. The bearer token still comes from credentials_file below.
+    scheme: http
+    scrape_interval: 30s
+    # Below the interval, and above the route's own database deadline (2 s,
+    # apps/core/metrics.DB_DEADLINE_S), so a slow database gives meshychat_db_up 0, not a
+    # failed scrape.
+    scrape_timeout: 10s
+    authorization:
+      type: Bearer
+      credentials_file: /etc/prometheus/secrets/meshychat-metrics-token
+    static_configs:
+      # One target per serving process: every series is per process (docs/DIVERGENCES.md
+      # 020, "Process scope"). Replace with the deployment's addresses.
+      - targets:
+          - meshychat.example.internal:80

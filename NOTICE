@@ -1,0 +1,15 @@
+NOTICE
+
+This repository includes third-party material.
+
+apps/peers/invite_wordlist.txt
+  Derived from the EFF Long Wordlist for dice-generated passphrases (Electronic Frontier Foundation, 2016),
+  obtained from https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
+  This file holds the words only, one per line, without the dice numbers, and has 7772 entries; it is not
+  byte-identical to the published file.
+  EFF's pages for the list state no separate licence. EFF's copyright policy (https://www.eff.org/copyright) says:
+  "Any and all original material on the EFF website may be freely distributed at will under the Creative Commons
+  Attribution 4.0 International License (CC-BY), unless otherwise noted."
+  Licence text: https://creativecommons.org/licenses/by/4.0/
+
+Everything else in this repository is covered by LICENSE.

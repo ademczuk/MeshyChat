@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The postbox for a HEADLESS macOS user: one with no GUI (Aqua) login, such as a build seat's own
+     non-admin account. The LaunchAgent twin (net.meshychat.postbox.plist.template) bootstraps into
+     gui/<uid>, which a user without a GUI session does not have, so that path is not proven for such
+     a seat. This is a system LaunchDaemon that runs the daemon AS that user.
+     Replace:
+       __LABEL__        a label unique on this Mac, e.g. net.meshychat.postbox.builder
+       __USER__         the seat's macOS user (non-admin), e.g. builder
+       __PYTHON__       that user's Python 3.13 interpreter with psutil, cryptography, rfc8785 and websockets>=13.0
+                        (the identity's listener imports websockets.sync.client)
+       __POSTBOX_DIR__  that user's OWN postbox folder (postbox.py, postbox_os.py, postbox_child.py,
+                        meshy_channel.py, wait_next.py, config.json). Never share a folder with another
+                        seat's postbox: postbox.lock, config.json, status.json and the spool are per folder.
+     Install as an admin (the daemon itself still runs as __USER__):
+       sudo cp <filled file> /Library/LaunchDaemons/__LABEL__.plist
+       sudo chown root:wheel /Library/LaunchDaemons/__LABEL__.plist && sudo chmod 644 /Library/LaunchDaemons/__LABEL__.plist
+       plutil -lint /Library/LaunchDaemons/__LABEL__.plist
+       sudo launchctl bootstrap system /Library/LaunchDaemons/__LABEL__.plist
+     Stop before any config edit (config is read once at start), prove the old process tree exited, then start once:
+       sudo launchctl bootout system/__LABEL__
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>__LABEL__</string>
+  <key>UserName</key><string>__USER__</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>__PYTHON__</string>
+    <string>__POSTBOX_DIR__/postbox.py</string>
+  </array>
+  <key>WorkingDirectory</key><string>__POSTBOX_DIR__</string>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>ThrottleInterval</key><integer>30</integer>
+  <key>ProcessType</key><string>Background</string>
+  <key>StandardOutPath</key><string>__POSTBOX_DIR__/postbox.launchd.out.log</string>
+  <key>StandardErrorPath</key><string>__POSTBOX_DIR__/postbox.launchd.err.log</string>
+</dict>
+</plist>

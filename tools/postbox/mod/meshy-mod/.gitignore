@@ -1,0 +1,3 @@
+# Written by Claude Code on each load, for the version that loaded it
+.claude-plugin/types/
+tsconfig.json

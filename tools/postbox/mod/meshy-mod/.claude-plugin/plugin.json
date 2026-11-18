@@ -1,0 +1,7 @@
+{
+  "name": "meshy-mod",
+  "version": "0.16.2",
+  "description": "MeshyChat inside Claude Code: a band for addressed mail this session has not read, a /mesh-inbox pane (also /inbox while no other plugin owns that name) that reads signed messages without a Claude turn, and a marker-gate guard on sends.",
+  "author": { "name": "memory-bxxxxx" },
+  "types": "./types/index.d.ts"
+}

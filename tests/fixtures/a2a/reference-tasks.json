@@ -1,0 +1,72 @@
+{
+  "_comment": "TASK-2 AC#7 conformance reference vectors for the A2A task-lifecycle types. Each vector is the EXACT JSON a meshy-a2a type serializes to. Two independent checks bind meshy to the spec: (1) the meshy-a2a Rust test crates/meshy-a2a/tests/conformance.rs asserts meshy reproduces each vector byte-for-byte, and (2) a2a_lifecycle_verify.py parses each vector through the REFERENCE A2A v1.0 ProtoJSON parser (a2a.types.a2a_pb2 + google.protobuf.json_format). meshy -> these vectors -> the reference proto = an independent anchor: a meshy drift breaks (1); a vector drifting off-spec breaks (2). This is the lifecycle-type companion to the TASK-7 Agent-Card oracle (a2a_card_verify.py).",
+  "provenance": {
+    "spec": "A2A v1.0",
+    "source_of_record": "github.com/a2aproject/A2A specification/a2a.proto @ tag v1.0.1 (package lf.a2a.v1, proto3)",
+    "reference_parser": "a2a-sdk a2a.types.a2a_pb2 parsed via google.protobuf.json_format (ProtoJSON)",
+    "note": "v1.0 made ProtoJSON the single canonical JSON encoding for all bindings (JSON-RPC, gRPC, HTTP+JSON). Enum values are the proto names (TASK_STATE_*, ROLE_*), NOT v0.3.x kebab-case. Field names are camelCase (spec 5.5). No 'kind' discriminator. Source: whats-new-v1.md.",
+    "retrieved": "2026-06-17"
+  },
+  "vectors": [
+    {
+      "name": "task_working",
+      "type": "Task",
+      "json": { "id": "call-1", "contextId": "ctx", "status": { "state": "TASK_STATE_WORKING" } }
+    },
+    {
+      "name": "task_completed_with_result_artifact",
+      "type": "Task",
+      "json": { "id": "call-9", "status": { "state": "TASK_STATE_COMPLETED" }, "artifacts": [ { "artifactId": "call-9-result", "parts": [ { "data": { "ok": true } } ], "name": "result" } ] }
+    },
+    {
+      "name": "task_input_required",
+      "type": "Task",
+      "_comment": "TASK-28 AC#1: a mid-call elicit (CallStatus::InputRequired) projects to the A2A interactive-input lifecycle state.",
+      "json": { "id": "call-5", "contextId": "ctx", "status": { "state": "TASK_STATE_INPUT_REQUIRED" } }
+    },
+    {
+      "name": "task_auth_required",
+      "type": "Task",
+      "_comment": "TASK-28 AC#1: an auth-kind elicit (CallStatus::AuthRequired) projects to the A2A auth-required lifecycle state.",
+      "json": { "id": "call-6", "contextId": "ctx", "status": { "state": "TASK_STATE_AUTH_REQUIRED" } }
+    },
+    {
+      "name": "message_user_text",
+      "type": "Message",
+      "json": { "messageId": "m1", "contextId": "c1", "role": "ROLE_USER", "parts": [ { "text": "hi" } ] }
+    },
+    {
+      "name": "part_text",
+      "type": "Part",
+      "json": { "text": "hello" }
+    },
+    {
+      "name": "part_data",
+      "type": "Part",
+      "json": { "data": { "k": 1 } }
+    },
+    {
+      "name": "artifact_with_extensions",
+      "type": "Artifact",
+      "json": { "artifactId": "a1", "parts": [ { "text": "x" } ], "extensions": [ "https://ext.example/v1" ] }
+    },
+    {
+      "name": "artifact_update_first_chunk",
+      "type": "TaskArtifactUpdateEvent",
+      "_comment": "TASK-28 AC#2: the first streamed chunk projects to a TaskArtifactUpdateEvent; append omitted (proto3 false default) so the consumer starts a new artifact.",
+      "json": { "taskId": "call-1", "artifact": { "artifactId": "call-1-stream", "parts": [ { "text": "hello " } ] } }
+    },
+    {
+      "name": "artifact_update_append_chunk",
+      "type": "TaskArtifactUpdateEvent",
+      "_comment": "TASK-28 AC#2: a subsequent streamed chunk sets append=true to extend the same artifact id.",
+      "json": { "taskId": "call-1", "artifact": { "artifactId": "call-1-stream", "parts": [ { "text": "world" } ] }, "append": true }
+    },
+    {
+      "name": "status_update_completed",
+      "type": "TaskStatusUpdateEvent",
+      "_comment": "TASK-28 AC#2: the SSE stream closes with a terminal TaskStatusUpdateEvent carrying the final TaskState.",
+      "json": { "taskId": "call-1", "status": { "state": "TASK_STATE_COMPLETED" } }
+    }
+  ]
+}

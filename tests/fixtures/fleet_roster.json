@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "updated": "2026-09-24",
+  "notes": "SYNTHETIC. The shape of upstream tools/memory/fleet_roster.json (at b578b5c3a): these seven top-level fields, peers mapping a canonical peer id to its label, provisional_peers mapping an id to a note. Like upstream's, one label has upper-case letters and two differ only by case. No real peer id or label appears here.",
+  "operator": "fixture-operator",
+  "operator_peer_id": "00000000-0000-4000-8000-000000000001",
+  "peers": {
+    "00000000-0000-4000-8000-000000000001": "fixture-operator",
+    "00000000-0000-4000-8000-000000000002": "fixture-seat",
+    "00000000-0000-4000-8000-000000000003": "Fixture-Mixed-Case",
+    "00000000-0000-4000-8000-000000000004": "fixture-mixed-case"
+  },
+  "provisional_peers": {
+    "00000000-0000-4000-8000-0000000000ff": "fixture: a placeholder until provisioning records a real peer id"
+  }
+}

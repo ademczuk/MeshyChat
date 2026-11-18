@@ -1,0 +1,21 @@
+# LOAD-BEARING. Five lines that prevent a crash-loop.
+#
+# The SQL migrations are applied verbatim and checksummed. On a machine with
+# core.autocrlf=true (this one, local AND system), git would hand the working tree
+# CRLF copies, the checksums would then disagree with the LF-recorded rows in an
+# existing database, and the server would crash-loop on boot. That has happened
+# once already, in an earlier version of this project.
+#
+# The upstream pin said `migrations/*.sql`. This repo keeps them in `sql/`, so the
+# path is changed to match: a pin that names the wrong directory is not a pin.
+sql/*.sql text eol=lf
+# MADE THE SAME MISTAKE TWICE: the divergence migrations live in sql_meshychat/ and the
+# pin above does not cover them. git reported 'LF will be replaced by CRLF' on the first
+# one. A pin that names the wrong directory is not a pin.
+sql_meshychat/*.sql text eol=lf
+# The down scripts beside them (divergence 039): psql applies them, and a CRLF copy would
+# differ from the text the tests compare against.
+sql_meshychat/down/*.sql text eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+tests/fixtures/context_v1/*.jsonl -text

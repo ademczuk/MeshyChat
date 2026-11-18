@@ -1,0 +1,107 @@
+{
+ "cuts": {
+  "1": {
+   "items": [
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"d71c73f591c11795419bdda460cfa962\",\"gen\":1,\"batch\":1,\"ordinal\":0,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"antigravity\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T08:00:00.000Z\",\"native_ref\":\"a697cbdc4968a1e24391528fab6314e6\",\"text\":\"Initial synthetic operator request.\",\"text_sha256\":\"aac8daebdf99ba09465f12feb694e15a043581b6537da95aeed54df7537128b2\"}"
+   ],
+   "skipped": [],
+   "state": {
+    "adapter_version": "1.0",
+    "ag_hwm": [
+     0,
+     "2026-10-26T08:00:00.000000000Z",
+     0,
+     ""
+    ],
+    "batch": 2,
+    "batch_count": 0,
+    "batch_items": 256,
+    "denylist_sha256": "05205ffd32a9c8710642d24afd6389202c864e75cf59ae4ac0fd8c5ef65bad85",
+    "dialect": "antigravity",
+    "drop_machine_typed": true,
+    "final": null,
+    "finished": false,
+    "gen": 1,
+    "ordinal": 1,
+    "oversize": {},
+    "plan": [],
+    "quarantined": false,
+    "screens": false,
+    "seat": "fixture-seat",
+    "src": "d71c73f591c11795419bdda460cfa962",
+    "subagent": false,
+    "v": 7
+   }
+  },
+  "2": {
+   "items": [
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"d71c73f591c11795419bdda460cfa962\",\"gen\":1,\"batch\":1,\"ordinal\":0,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"antigravity\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T08:00:00.000Z\",\"native_ref\":\"a697cbdc4968a1e24391528fab6314e6\",\"text\":\"Initial synthetic operator request.\",\"text_sha256\":\"aac8daebdf99ba09465f12feb694e15a043581b6537da95aeed54df7537128b2\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"d71c73f591c11795419bdda460cfa962\",\"gen\":1,\"batch\":1,\"ordinal\":1,\"item\":\"assistant_text\",\"role\":\"assistant\",\"dialect\":\"antigravity\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T08:00:05.000Z\",\"native_ref\":\"d75293a87b1dde447def623ad89911e7\",\"text\":\"Initial synthetic assistant answer.\",\"text_sha256\":\"ba654a10623504f4b5b6bed84ed14521d9554fd79c2de0a619a7791ce2c96dea\"}"
+   ],
+   "skipped": [],
+   "state": {
+    "adapter_version": "1.0",
+    "ag_hwm": [
+     1,
+     "2026-10-26T08:00:05.000000000Z",
+     1,
+     ""
+    ],
+    "batch": 2,
+    "batch_count": 0,
+    "batch_items": 256,
+    "denylist_sha256": "05205ffd32a9c8710642d24afd6389202c864e75cf59ae4ac0fd8c5ef65bad85",
+    "dialect": "antigravity",
+    "drop_machine_typed": true,
+    "final": null,
+    "finished": false,
+    "gen": 1,
+    "ordinal": 2,
+    "oversize": {},
+    "plan": [],
+    "quarantined": false,
+    "screens": false,
+    "seat": "fixture-seat",
+    "src": "d71c73f591c11795419bdda460cfa962",
+    "subagent": false,
+    "v": 7
+   }
+  },
+  "4": {
+   "items": [
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"d71c73f591c11795419bdda460cfa962\",\"gen\":1,\"batch\":1,\"ordinal\":0,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"antigravity\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T08:00:00.000Z\",\"native_ref\":\"a697cbdc4968a1e24391528fab6314e6\",\"text\":\"Initial synthetic operator request.\",\"text_sha256\":\"aac8daebdf99ba09465f12feb694e15a043581b6537da95aeed54df7537128b2\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"d71c73f591c11795419bdda460cfa962\",\"gen\":1,\"batch\":1,\"ordinal\":1,\"item\":\"assistant_text\",\"role\":\"assistant\",\"dialect\":\"antigravity\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T08:00:05.000Z\",\"native_ref\":\"d75293a87b1dde447def623ad89911e7\",\"text\":\"Initial synthetic assistant answer.\",\"text_sha256\":\"ba654a10623504f4b5b6bed84ed14521d9554fd79c2de0a619a7791ce2c96dea\"}",
+    "{\"schema\":\"context.v1\",\"kind\":\"item\",\"seat\":\"fixture-seat\",\"src\":\"d71c73f591c11795419bdda460cfa962\",\"gen\":1,\"batch\":1,\"ordinal\":2,\"item\":\"user_text\",\"role\":\"user\",\"dialect\":\"antigravity\",\"adapter_version\":\"1.0\",\"time\":\"2026-10-26T08:10:05.000Z\",\"native_ref\":\"3f2fff0bca498660102b1d1f172a6f79\",\"text\":\"Post-rewind synthetic operator follow-up.\",\"text_sha256\":\"8267e22f158aad6d02649ee0c6715f26f001ea0c88d7f99ca6f51cc6559efcdb\"}"
+   ],
+   "skipped": [],
+   "state": {
+    "adapter_version": "1.0",
+    "ag_hwm": [
+     1,
+     "2026-10-26T08:10:05.000000000Z",
+     1,
+     "2026-10-26T08:00:05.000000000Z"
+    ],
+    "batch": 2,
+    "batch_count": 0,
+    "batch_items": 256,
+    "denylist_sha256": "05205ffd32a9c8710642d24afd6389202c864e75cf59ae4ac0fd8c5ef65bad85",
+    "dialect": "antigravity",
+    "drop_machine_typed": true,
+    "final": null,
+    "finished": false,
+    "gen": 1,
+    "ordinal": 3,
+    "oversize": {},
+    "plan": [],
+    "quarantined": false,
+    "screens": false,
+    "seat": "fixture-seat",
+    "src": "d71c73f591c11795419bdda460cfa962",
+    "subagent": false,
+    "v": 7
+   }
+  }
+ },
+ "source_commit": "cd5a68b9bc90ac9128df0fee138b56b8991f58fc"
+}

@@ -1,0 +1,59 @@
+# The versions production runs. A CONSTRAINTS file, used beside requirements.txt:
+#
+#   pip install -r requirements.txt -r requirements-dev.txt -c requirements.lock.txt
+#
+# WHY. requirements.txt states lower bounds on purpose (the oldest version carrying an API
+# the code uses). A lower bound alone means a fresh install gets whatever is newest that day,
+# which nobody has run the suite on. This file is the other half: `pip freeze` of the
+# environment the local gate and production run (CPython 3.13.12, Windows), taken 2026-09-29
+# for ASDLC OI-62. A constraints file pins a package only IF something installs it, so it
+# adds no dependency.
+#
+# TO MOVE A VERSION: install the new one, run the gate, then regenerate this file with
+# `pip freeze` from that environment. Never edit one line by hand to match an advisory
+# without the gate run.
+asgiref==3.12.1
+attrs==26.1.0
+autobahn==26.10.2
+Automat==25.4.16
+biscuit-python==0.4.0
+cbor2==6.1.4
+cffi==2.1.1
+channels==4.3.2
+click==8.5.0
+colorama==0.4.6
+constantly==23.10.4
+cryptography==50.0.1
+daphne==4.2.3
+Django==6.1.1
+h11==0.16.0
+hyperlink==21.0.0
+idna==3.20
+Incremental==24.11.0
+iniconfig==2.3.0
+msgpack==1.2.3
+numpy==2.5.3
+packaging==26.3
+pluggy==1.6.0
+psutil==7.2.2
+psycopg==3.3.6
+psycopg-binary==3.3.6
+pycparser==3.0
+Pygments==2.21.0
+PyJWT==2.15.0
+PyNaCl==1.6.2
+pyOpenSSL==26.4.0
+pytest==9.1.1
+pytest-asyncio==1.4.0
+pytest-django==4.14.0
+rfc8785==0.1.4
+service-identity==26.1.0
+sqlparse==0.6.0
+Twisted==26.10.0
+txaio==26.6.1
+typing_extensions==4.16.0
+tzdata==2026.4
+ujson==6.0.0
+uvicorn==0.53.0
+websockets==17.1
+zope.interface==8.6

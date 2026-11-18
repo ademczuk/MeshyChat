@@ -1,0 +1,284 @@
+{
+ "note": "labels and epoch milliseconds of sends from one seat on 2026-10-01 (no bodies, no keys)",
+ "sends": [
+  {
+   "t_ms": 1790082464303,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790082465686,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790082467069,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790082469844,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790082471925,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790083550522,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790083551667,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790083552717,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790083554028,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790083554967,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790084270910,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790084272052,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790084273453,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790084274494,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790084275917,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790084276720,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790084643353,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "exxxx-session"
+   ]
+  },
+  {
+   "t_ms": 1790084644297,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "exxxx-session"
+   ]
+  },
+  {
+   "t_ms": 1790085287327,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790085288288,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790085399424,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790085401005,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790085403701,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790085405418,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790085406917,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790085408148,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790085409192,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790085410158,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790086984669,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790088222925,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790088225083,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790088226951,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790088228470,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790088231490,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790088232596,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790088233935,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790088235586,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790088237072,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790088238729,
+   "to": [
+    "codex-oxxxxxx-cli",
+    "vxxxxxxxxxx"
+   ]
+  },
+  {
+   "t_ms": 1790089022924,
+   "to": [
+    "kxxx"
+   ]
+  }
+ ]
+}

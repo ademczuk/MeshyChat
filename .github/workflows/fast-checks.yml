@@ -1,0 +1,48 @@
+# A small check on every push and pull request: a fresh machine, Linux, a clean install.
+#
+# It installs exactly what the repository declares and runs four core suites against a throwaway
+# PostgreSQL 16. The full suite (see CONTRIBUTING.md) needs more time and runs locally.
+name: fast-checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: fast-checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  fast:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: meshychat_owner   # the role the test DSN connects as (the server's own owner role)
+          POSTGRES_PASSWORD: ci-only-not-a-secret
+          POSTGRES_DB: postgres
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U meshychat_owner" --health-interval 5s
+          --health-timeout 5s --health-retries 10
+    env:
+      PGPASSWORD: ci-only-not-a-secret        # the throwaway CI database; libpq reads it from here
+      MESHY_TEMPLATE_DSN: postgresql://meshychat_owner@127.0.0.1:5432/postgres
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install what the repository declares, at the pinned versions
+        run: pip install -r requirements.txt -r requirements-dev.txt -c requirements.lock.txt
+      - name: Every test file collects (no import or collection error hides behind the subset)
+        run: python -m pytest --collect-only -q -p no:cacheprovider tests/ > /dev/null
+      - name: Core suites
+        run: >-
+          python -m pytest -q -p no:cacheprovider
+          tests/test_crypto_parity.py
+          tests/test_memory_skills.py
+          tests/test_signed_bytes.py
+          tests/test_bounded_caches.py

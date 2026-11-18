@@ -1,0 +1,224 @@
+{
+  "algorithm": "ed25519",
+  "fixtures": [
+    {
+      "grant": {
+        "expires_unix": null,
+        "expires_unix_millis": null,
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "name": "exact_match_null_expiry",
+      "req": {
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "token_b64": "EowCCqEBCgVncmFudAokMTEwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwCiQyMjAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAKJDMzMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMAoJc3VtbWFyaXplGAMiGQoXCIAIEgMYgQgSAxiCCBIDGIMIEgMYhAgSJAgAEiDIy2AxdlwFMjHKIUFIBmpeowk17ENlQ_es5NTxfGPsbxpA4fB-xxuGg6cKvmfGNk5NWnhWIYUwgnvSuU0ONzVXB9_8GHdT35RSYu43AMDt-d1-UPSlehHbRnetIdM3SCvqDSIiCiAkUqtfWwZ5lyOliw_N671QZg5dPwv1hRyf8U5MVQ4S6w=="
+    },
+    {
+      "grant": {
+        "expires_unix": 1781528400,
+        "expires_unix_millis": 1781528400000,
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "name": "exact_match_future_expiry",
+      "req": {
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "token_b64": "ErkCCs4BCgVncmFudAokMTEwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwCiQyMjAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAKJDMzMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMAoJc3VtbWFyaXplCgF0GAMiGQoXCIAIEgMYgQgSAxiCCBIDGIMIEgMYhAgyKAomCgIIGxIHCAUSAwiFCBoXCgUKAwiFCAoICgYQ0O6_0QYKBBoCCAASJAgAEiANWdWRox6Vaplx9PQvAQbrb2s9mxl6CxxCK-RbdTJVqhpAOTp_wjh4uNMXvBiBghIR9rtj4Dni80roF3HK_6ioRoLkQ08cf8hLxpi7Ae9Z6IbtIGRB4uT_1qkEXTplGzFUDyIiCiDMydXGSv-4IRXT-eSx_jntKDxrwOMum4lyB3Kc9pjFvQ=="
+    },
+    {
+      "grant": {
+        "expires_unix": null,
+        "expires_unix_millis": null,
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "name": "wrong_peer",
+      "req": {
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "44000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "token_b64": "EowCCqEBCgVncmFudAokMTEwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwCiQyMjAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAKJDMzMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMAoJc3VtbWFyaXplGAMiGQoXCIAIEgMYgQgSAxiCCBIDGIMIEgMYhAgSJAgAEiBbqlToFAWJ86rgfQZBdWK2pIHBzc1s4XWOwezOo0Ib5hpAqk-Tv09VZ7SSlNkHR6oEaLlP3oKhtXmVjj05ODN-QpCIpMOi9rOiF9CjS3H5l4JPoxAHKxyMJYViK9VxPnmxBSIiCiCB_PY8hWglf0-Qn2NdBhdxxZbq3J_A3-zEhpJ35oWg9g=="
+    },
+    {
+      "grant": {
+        "expires_unix": null,
+        "expires_unix_millis": null,
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "name": "wrong_skill",
+      "req": {
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "translate"
+      },
+      "token_b64": "EowCCqEBCgVncmFudAokMTEwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwCiQyMjAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAKJDMzMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMAoJc3VtbWFyaXplGAMiGQoXCIAIEgMYgQgSAxiCCBIDGIMIEgMYhAgSJAgAEiAjn8qRBrvNKYATCrwMC5sNOS4wfHyqV9uGEN-8SAw2LhpAlQRW63T0OnjBjH21Xkkdw9rqZHOA3oke1B8oReYoRwTBrRMh7s07PSV3JlxGegJrWO4_ZLtTxGmk952lxB5CDCIiCiBeOWmXjhNLoDzAzH3tCn2-ROcnJmE7ngHgtPxL1QbHiA=="
+    },
+    {
+      "grant": {
+        "expires_unix": null,
+        "expires_unix_millis": null,
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "name": "wrong_grantor",
+      "req": {
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "55000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "token_b64": "EowCCqEBCgVncmFudAokMTEwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwCiQyMjAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAKJDMzMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMAoJc3VtbWFyaXplGAMiGQoXCIAIEgMYgQgSAxiCCBIDGIMIEgMYhAgSJAgAEiBTwHnAWkAAqC3M6Co8VHf8I0D76951az9qxJ-cG9OM9xpATdUWpfZKO1TuJFYHYkCQKui0pCc1BCUbJzV9IjsXnjwS2b3PFNW8EdFVrwXDN3hRpqmDNFK68_cb39PWJIvKCSIiCiCVJoNI18bPezE8Op8DfimbTML3gHXHKouOEkb1uHhQ4w=="
+    },
+    {
+      "grant": {
+        "expires_unix": null,
+        "expires_unix_millis": null,
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "name": "wrong_grantee",
+      "req": {
+        "grantee": "55000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "token_b64": "EowCCqEBCgVncmFudAokMTEwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwCiQyMjAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAKJDMzMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMAoJc3VtbWFyaXplGAMiGQoXCIAIEgMYgQgSAxiCCBIDGIMIEgMYhAgSJAgAEiBzZa1yHlSLSC9xFZpnFFVVH6KdNViWVAKl6JD2PEETDhpACZbzgM1dF-DEpKcjPzZbJBOnfwiAT1TE-bBh7h9ypxk-byr9rq_BnQsV2nRgHsNRbT771saYoBR-M0-me102BCIiCiDM1CvtDOvSrnT40Ach-528PTNlEcjE8Wk_ll8-gaVmEA=="
+    },
+    {
+      "grant": {
+        "expires_unix": 1781521200,
+        "expires_unix_millis": 1781521200000,
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "name": "expired_before_now",
+      "req": {
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "token_b64": "ErkCCs4BCgVncmFudAokMTEwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwCiQyMjAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAKJDMzMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMAoJc3VtbWFyaXplCgF0GAMiGQoXCIAIEgMYgQgSAxiCCBIDGIMIEgMYhAgyKAomCgIIGxIHCAUSAwiFCBoXCgUKAwiFCAoICgYQsLa_0QYKBBoCCAASJAgAEiCuNUxH6pyfVI2pTvnJQ5omZWomWRP6ZWoDxRLjLDzoRRpAUekj7JLB7NsLvcnMmvXP1dTSUUmlb8enyY_w2j67YzMTGH26ZsexJRTK3GyfwzFpciJ1DNlRQ_crWLHtwKeUAiIiCiCXeHKMsRpM90UJ0bXF0EF3pjUFxM_A0OiOoqLXehtrMQ=="
+    },
+    {
+      "grant": {
+        "expires_unix": 1781524800,
+        "expires_unix_millis": 1781524800000,
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "name": "expiry_equals_now_strict_deny",
+      "req": {
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "token_b64": "ErkCCs4BCgVncmFudAokMTEwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwCiQyMjAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAKJDMzMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMAoJc3VtbWFyaXplCgF0GAMiGQoXCIAIEgMYgQgSAxiCCBIDGIMIEgMYhAgyKAomCgIIGxIHCAUSAwiFCBoXCgUKAwiFCAoICgYQwNK_0QYKBBoCCAASJAgAEiAs18qW17Yas-WGIO_XVJqnSXA9xmme4l18XZdkqHNrEhpAWvZ8810Z8ogV2qsIwxrxaYZRapRkMCbO6VPTPSjZJJGSBIRJzDe4VRf-wcx8Tf-i9pDP99DjHWi6q2ZikYjdCiIiCiAiYF5nacxmb_5VMZcID0P2B2VcTa33ST-HENAgrNfl7w=="
+    },
+    {
+      "grant": {
+        "expires_unix": null,
+        "expires_unix_millis": null,
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "name": "scope_present_still_allow",
+      "req": {
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "token_b64": "EowCCqEBCgVncmFudAokMTEwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwCiQyMjAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAKJDMzMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMAoJc3VtbWFyaXplGAMiGQoXCIAIEgMYgQgSAxiCCBIDGIMIEgMYhAgSJAgAEiCo1ACeu3_86dBEG3ad7__fRyfZZoZB-2FT0n7aW23_RhpAgxCEZ9V9oddI6_8ELocTyTeSmWq3a_hbz61OCC8V1XNbP6NBQlx4t8m9uRcY1cSJx7dQdaPD3j1HzCV_69g2DCIiCiB62aYTjM4waBOKFhJ2PVdB5y3j8JFVtxYBhEomyDGmuQ=="
+    },
+    {
+      "grant": {
+        "expires_unix": 1781524800,
+        "expires_unix_millis": 1781524800500,
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "name": "sub_second_expiry_floors_closed",
+      "req": {
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "token_b64": "ErkCCs4BCgVncmFudAokMTEwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwCiQyMjAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAKJDMzMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMAoJc3VtbWFyaXplCgF0GAMiGQoXCIAIEgMYgQgSAxiCCBIDGIMIEgMYhAgyKAomCgIIGxIHCAUSAwiFCBoXCgUKAwiFCAoICgYQwNK_0QYKBBoCCAASJAgAEiCWPcO5QPM0401Nj2LPFZs6hyyedH0yk15SUCnPi5yCWhpAjevrFBMZXaS2Vh8y-psbZompQlSMEMneiltHhQvfO7MAv5802c_1gRjWQU_CyDlq3TlhoFp4DnR3Yhn8q9dnACIiCiAymmxkK2GYCkjQz7X3CAWJJvgzWntMp29AupySMORX2g=="
+    },
+    {
+      "attenuated": true,
+      "grant": {
+        "expires_unix": null,
+        "expires_unix_millis": null,
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "name": "attenuated_injected_skill_inert",
+      "req": {
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "translate"
+      },
+      "token_b64": "EowCCqEBCgVncmFudAokMTEwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwCiQyMjAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAKJDMzMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMAoJc3VtbWFyaXplGAMiGQoXCIAIEgMYgQgSAxiCCBIDGIMIEgMYhAgSJAgAEiBSdaeemmc7tokOEYiWwiMfKi7CJC1Y7d95or6GzNjT1RpAwKJfTldkQprf6FiGzNrDunQUM572gh7TcHwHTrB3Ijwj6E0fDWIOSlzwbMuttPsMUIYtQPNvO4V5RMJ5_W9EChqSAQooCgl0cmFuc2xhdGUYAyIZChcIgAgSAxiBCBIDGIIIEgMYgwgSAxiFCBIkCAASIAdJiYcsXgcyws-rBXS2c7wAQQkT8imAvCQW5PjdeW7xGkA494b7u0kAaKmQ7_mduUQfAKu6xYEyMBizHS7uFMIb3YsOPSVIrDdB6WDVhCOvdWZa-p5S8v3UXsqcSxuTuiABIiIKIBMmgptkCi-IBiArPR_5xhGNy6_Hgf5dxC2ZE-xtzw_e"
+    },
+    {
+      "grant": {
+        "expires_unix": null,
+        "expires_unix_millis": null,
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "name": "attenuated_token_authority_still_allows",
+      "req": {
+        "grantee": "22000000-0000-0000-0000-000000000000",
+        "grantor": "11000000-0000-0000-0000-000000000000",
+        "peer": "33000000-0000-0000-0000-000000000000",
+        "skill": "summarize"
+      },
+      "token_b64": "EowCCqEBCgVncmFudAokMTEwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwCiQyMjAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAKJDMzMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMAoJc3VtbWFyaXplGAMiGQoXCIAIEgMYgQgSAxiCCBIDGIMIEgMYhAgSJAgAEiBSdaeemmc7tokOEYiWwiMfKi7CJC1Y7d95or6GzNjT1RpAwKJfTldkQprf6FiGzNrDunQUM572gh7TcHwHTrB3Ijwj6E0fDWIOSlzwbMuttPsMUIYtQPNvO4V5RMJ5_W9EChqSAQooCgl0cmFuc2xhdGUYAyIZChcIgAgSAxiBCBIDGIIIEgMYgwgSAxiFCBIkCAASIAdJiYcsXgcyws-rBXS2c7wAQQkT8imAvCQW5PjdeW7xGkA494b7u0kAaKmQ7_mduUQfAKu6xYEyMBizHS7uFMIb3YsOPSVIrDdB6WDVhCOvdWZa-p5S8v3UXsqcSxuTuiABIiIKIBMmgptkCi-IBiArPR_5xhGNy6_Hgf5dxC2ZE-xtzw_e"
+    }
+  ],
+  "now_unix": 1781524800,
+  "root_public_hex": "43745e5e73db4379217a4cb5435c29d56686e087839c930ff3316f20d04a7090"
+}

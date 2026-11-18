@@ -1,0 +1,35 @@
+# Runtime dependencies for the server.
+#
+# WHY THIS FILE EXISTS: before 2026-09-21 the repository declared its dependencies
+# nowhere. A fresh clone could not be built without discovering them by running the
+# suite and reading each ImportError in turn, which is how this list was produced:
+# django, channels and psycopg are named in the code, but `daphne` (pulled in only by
+# `channels.testing`), `rfc8785` (apps/crypto/primitives.py) and `pynacl` surfaced one
+# collection error at a time.
+#
+# Lower bounds, not pins. The bound is the oldest version carrying an API this code
+# uses; the comment records the version the suite was last PROVEN green against, which
+# is a different claim and the one that matters when something breaks.
+#
+# Proven green: 173 tests, 2026-09-21, on the versions in the trailing comments.
+
+Django>=5.0            # proven on 6.1.1
+channels>=4.0          # proven on 4.3.2; ASGI websocket consumers
+daphne>=4.0            # proven on 4.2.3; imported by channels.testing, so tests need it
+Twisted>=25.5.0        # proven on 26.4.0; Request.requestReceived checks _parsePOSTFormSubmission (#290)
+psycopg[binary]>=3.1   # proven on 3.3.6; psycopg3 only, psycopg2 will not work
+cryptography>=42.0     # proven on 50.0.1; Ed25519 primitives
+PyNaCl>=1.5            # proven on 1.6.2; strict signature verification
+PyJWT>=2.8             # proven on 2.14.0
+rfc8785>=0.1.4         # proven on 0.1.4; real RFC 8785 canonical JSON, NOT sort_keys
+# numpy: apps/meshsem (divergence 019) scores a query against every stored mesh vector
+# with one float32 matrix product. ~23k x 768 in pure Python would be ~18M multiply-adds
+# per request; numpy makes it milliseconds without an ANN index and its recall question.
+numpy>=2.0             # proven on 2.5.3
+# biscuit-python: object-capability tokens (B07, docs/DIVERGENCES.md 040), imported only when
+# MESHY_CAPABILITIES is on. PINNED EXACTLY, unlike the lines above: the verifier's guarantees
+# (strict third-party signatures, the parse that refuses legacy blocks, the default limits)
+# were read in the crate this version bundles, biscuit-auth 6.0.0, and hold for it alone.
+# 0.4.0 publishes no cp314 wheel and does not build on 3.14, so from this line a 3.14 venv
+# fails here, at install: the CPython 3.13 pin of pyproject.toml, in force.
+biscuit-python==0.4.0  # proven on 0.4.0 (cp313-win_amd64 wheel, CPython 3.13.12), 2026-09-25

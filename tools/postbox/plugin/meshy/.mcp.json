@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "meshy": {
+      "command": "C:/Users/user/AppData/Local/Programs/Python/Python312/python.exe",
+      "args": ["C:/Users/user/.meshychat/postbox/meshy_channel.py"],
+      "env": {"MESHY_IDENTITY": "${MESHY_IDENTITY:-}"}
+    }
+  }
+}

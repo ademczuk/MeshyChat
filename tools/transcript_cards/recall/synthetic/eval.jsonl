@@ -1,0 +1,4 @@
+# Evaluation labels for tests/test_recall_cards_search.py: never tune against these. Synthetic, judge.py's format.
+{"id": "eval-001", "query": "where does the orchard ladder go", "labelled_by": "memory-bxxxxx", "expect": [{"type": "Ruling", "seat": "uxxx", "date": "2026-10-05", "at": "2026-10-05T14:00:00Z", "status": "active", "must_contain": ["north shed"]}]}
+{"id": "eval-002", "query": "quarry archive pruning", "labelled_by": "memory-bxxxxx", "expect": [{"type": "Ruling", "seat": "memory-bxxxxx", "date": "2026-10-09", "at": "2026-10-09T16:20:00Z", "status": "active", "must_contain": ["quarry archive whole"]}]}
+{"id": "eval-003", "query": "copper kettle kitchen", "labelled_by": "memory-bxxxxx", "expect": [{"type": "Ruling", "seat": "vxxxxxxxxxx", "date": "2026-10-04", "at": "2026-10-04T08:00:00Z", "status": "active", "must_contain": ["east kitchen"]}]}
