@@ -45,10 +45,8 @@
 -- "rebuilt by a job", never committed, never gated on. This table is all three. E8's
 -- "object storage" clause is about where a REGENERATED FILE lives so it cannot freeze
 -- main; a projection read on the request path at 0.3 QPS by the same process that reads
--- shared_memory belongs in the transactional tier, which is the fleet's own ruling
--- (shared-KG wiki/a-warehouse-is-the-wrong-hot-store-for-an-agent-graph: "put shared
--- cross-session context and provenance in a transactional service built for small reads
--- and writes"). The 58 partial indexes already in this schema are derived artifacts in
+-- shared_memory belongs in the transactional tier, beside the rows it is derived from.
+-- The 58 partial indexes already in this schema are derived artifacts in
 -- Postgres for the same reason.
 --
 -- WHY src_field IS A COLUMN. It records which spelling and which type the WRITER used

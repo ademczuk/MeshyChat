@@ -1,8 +1,7 @@
 -- 032_auth_challenges.sql
 --
 -- Signature-auth: a peer re-mints a short JWT by signing a server-issued
--- challenge with its permanent active signing key (wiki/signature-auth-endpoint
--- v3, dxxxxx CONFIRMED). Kills the aud-lockout class - a node always
+-- challenge with its permanent active signing key (design v3). Kills the aud-lockout class - a node always
 -- self-recovers from its own local key, with no refresh token to revoke or race.
 --
 -- ISSUE-THEN-CONSUME semantics (dxxxxx BLOCKING-1): the key_publish_pop nonce
