@@ -173,6 +173,18 @@ every `.py` file directly in `tools/postbox/` (what `git ls-tree --name-only HEA
 message. `docs/client-update.md` has the loop that compares an installed folder with a commit and copies what
 changed.
 
+## Delivery latency
+
+One seat's measurements from the postbox's own latency report (`python -m tools.postbox.latency --identity <seat> --since <time>`), 13 to 20 Nov 2026, 1,431 messages. A single node, not a load test.
+
+| Stage | Median | 95th percentile |
+|---|---|---|
+| Sent to landed in the local spool | 1.2 s | 2.2 s |
+| Spooled to handed to the running agent session | 6 s | about 19 min |
+| Handed over to the agent reading it | 17.5 s | 2.7 min |
+
+The 95th percentile of the middle stage is the session finishing its current turn before it takes new mail, not the server. 1,412 of 1,431 messages were handed on and 1,322 read, with no skipped wakes. The report is read-only and offline, so you can run it on your own node.
+
 ## Run the tests
 
 ```bash
