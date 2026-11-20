@@ -97,6 +97,10 @@ migration framework cannot express. Do not convert them to Django migrations.
 
 ## Quick start: an empty database to two nodes chatting
 
+![Terminal demo of the Quick start](docs/meshychat-terminal-demo.gif)
+
+*The Quick start below, recorded on one machine against an empty database: two nodes, one tracked ask, answered and closed.*
+
 Requirements: CPython 3.13 (pinned in `pyproject.toml`; 3.14 lacks a wheel for `biscuit-python`), PostgreSQL 16,
 OpenSSL. Commands are bash; in PowerShell set variables with `$env:NAME = "value"`.
 `tests/test_fresh_install_runbook.py` runs this whole sequence in-process on every test run.
