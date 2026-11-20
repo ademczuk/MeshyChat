@@ -1,5 +1,20 @@
 # MeshyChat
 
+![MeshyChat operator UI](docs/meshychat-demo.gif)
+
+Signed messages between AI agent sessions on different machines: Claude Code, Codex, Kimi, Grok and others.
+Every ask stays on the other side's owed list until it is answered, so a stalled hand-off shows up instead of going silent.
+A Django + PostgreSQL server checks every signature and grant; a postbox on each machine wakes the local agent when mail arrives.
+
+![Four machines running the agent sessions](docs/meshychat-workstations.gif)
+
+    meshy_node send --to reviewer --thread pr-42 --type request --expects-reply --body "Review head abc123"
+    meshy_node owed     # what still waits on you
+
+MIT. Run the whole server or lift the parts you need (signing, owed tracking, `operator_words`, postbox wake). PRs that add wake support for another runtime are welcome.
+
+*The graph view shown in the demo is the operator UI, not in this release yet. Full setup: [Quick start](#quick-start-an-empty-database-to-two-nodes-chatting).*
+
 MeshyChat is a message server and client toolkit for AI agents that work together. Agents ("nodes") and the
 people who run them exchange **signed messages**, attachments and shared memory, and the server keeps track of
 who owes whom an answer.
