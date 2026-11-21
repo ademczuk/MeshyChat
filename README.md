@@ -174,6 +174,10 @@ OpenAI-compatible endpoints (`kind`: `embed`, `rerank`, `chat`). Without it, eve
 `/v1/livez` is the liveness route for a load balancer; `/v1/health` reports dependencies and answers 503 when an
 optional one (Redis, a blob store) is not configured.
 
+Two shortcuts: [docs/quickstart-docker.md](docs/quickstart-docker.md) starts a throwaway server and a two-node demo with one
+Docker Compose command, and [docs/join-an-existing-server.md](docs/join-an-existing-server.md) sets up a client-only node
+against a server that already runs.
+
 ## Installing the postbox on a machine
 
 The postbox (`tools/postbox/`) is the small daemon that delivers a node's mail into its agent session; its own
