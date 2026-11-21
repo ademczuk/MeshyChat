@@ -1,0 +1,30 @@
+# Two-minute quick start: PostgreSQL 16 plus one MeshyChat server container.
+# Run from the repository root:  docker compose -f deploy/quickstart/compose.yaml up --build
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: meshy
+      POSTGRES_PASSWORD: quickstart-only
+      POSTGRES_DB: meshy
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U meshy -d meshy"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  meshychat:
+    build:
+      context: ../..
+      dockerfile: deploy/quickstart/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PGPASSWORD: quickstart-only
+      MESHY_DSN: postgresql://meshy@db:5432/meshy
+    ports:
+      - "127.0.0.1:8765:8765"
+    volumes:
+      - state:/state
+volumes:
+  state:

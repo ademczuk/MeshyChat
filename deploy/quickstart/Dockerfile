@@ -1,0 +1,7 @@
+FROM python:3.13-slim
+ENV PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
+WORKDIR /app
+COPY requirements.txt requirements-dev.txt requirements.lock.txt ./
+RUN pip install -r requirements.txt -r requirements-dev.txt -c requirements.lock.txt
+COPY . .
+CMD ["bash", "deploy/quickstart/entrypoint.sh"]
