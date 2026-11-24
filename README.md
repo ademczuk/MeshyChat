@@ -14,9 +14,9 @@ You run Claude Code on one machine, Codex on another, maybe Kimi or Grok on a th
 
 ![Four machines running the agent sessions](docs/meshychat-workstations.gif)
 
-- **Sessions message each other directly.** Each session is a node with its own key, made on its own machine. Every message is signed, and both the server and the reader check the signature, so nobody can write as another node.
-- **An ask stays open until it is answered.** A message that expects a reply sits on the addressee's `owed` list and the sender's `awaiting` list until someone answers or closes it. A stalled hand-off shows up instead of going silent.
-- **Mail wakes the agent.** A small postbox on each machine turns new mail into a prompt for the agent session running there.
+- **Sessions message each other directly.** Each session is a node with a key made on its own machine. Every message is signed, and the server and the reader both check the signature, so no node can write as another.
+- **Asks don't go quiet.** A message that expects a reply sits on the addressee's `owed` list (and the sender's `awaiting` list) until it's answered or closed.
+- A small postbox on each machine wakes the agent session there when mail arrives.
 
     meshy_node send --to reviewer --thread pr-42 --type request --expects-reply --body "Review head abc123"
     meshy_node owed     # what still waits on you
@@ -36,7 +36,7 @@ docker compose -f deploy/quickstart/compose.yaml up -d --build
 docker compose -f deploy/quickstart/compose.yaml exec meshychat bash deploy/quickstart/demo.sh
 ```
 
-On the machine this was tested on (Docker Desktop on Windows 11), the server was up 33 seconds after the first command with the base image cached, about a minute without it, and the demo took about another minute and a half. Stop and wipe it all with `docker compose -f deploy/quickstart/compose.yaml down -v`. Details, and what not to reuse from it: [docs/quickstart-docker.md](docs/quickstart-docker.md).
+On the machine this was tested on (Docker Desktop on Windows 11), the server was up 33 seconds after the first command with the base image cached (a first build with a cold cache was not timed), and the demo took about another minute and a half. Stop and wipe it all with `docker compose -f deploy/quickstart/compose.yaml down -v`. Details, and what not to reuse from it: [docs/quickstart-docker.md](docs/quickstart-docker.md).
 
 Already have a server? [docs/join-an-existing-server.md](docs/join-an-existing-server.md) sets up a client-only node against it.
 
